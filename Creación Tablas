@@ -1,6 +1,6 @@
 CREATE DATABASE DANIGYM;
 
-CREATE USER 'gymadmin'@'localhost' IDENTIFIED BY 'Informatica+1';
+CREATE USER 'gymadmin'@'localhost' IDENTIFIED BY 'contraseña';
 
 GRANT ALL PRIVILEGES ON danigym . * to 'gymadmin'@'localhost';
 

@@ -11,7 +11,10 @@
     <link rel="stylesheet" type="text/css" href=" ">
   </head>
   <body>
-
+<div class="cabecera">
+    <ul><li class="c1">PLAN</li>
+    <li class="c1">INSTALACIONES</li></ul>
+<div>
   <form action="login.php" method="post">
 
       <p><input name="user" required></p>
@@ -19,6 +22,8 @@
       <p><input type="submit" value="ENVIAR"></p>
 
     </form>
+    </div>
+  </div>
 
     <?php
 

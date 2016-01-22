@@ -8,23 +8,32 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" type="text/css" href=" ">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="proyecto.css"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:500,600' rel='stylesheet' type='text/css'>
+
+
+
   </head>
   <body>
+<div id="contenedor">
 <div class="cabecera">
-    <ul><li class="c1">PLAN</li>
-    <li class="c1">INSTALACIONES</li></ul>
-<div>
-  <form action="login.php" method="post">
+  <div class="logo"><img src="logo.jpg" alt="" /></div>
+    <ul><li class="c1"><p>PLAN</p></li>
+  <li class="c1"><p>INSTALACIONES</p></li></ul>
 
-      <p><input name="user" required></p>
-      <p><input name="password" type="password" required></p>
+  <form class="for" action="login.php" method="post">
+
+      <p>USUARIO<input name="user" required></p>
+      <p>CONTRASEÑA<input name="password" type="password" required></p>
       <p><input type="submit" value="ENVIAR"></p>
 
     </form>
-    </div>
-  </div>
 
+  </div>
+</div>
     <?php
 
         if (isset($_POST["user"])) {

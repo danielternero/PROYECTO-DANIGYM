@@ -15,8 +15,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script>
     $(document).ready(function(){
-    $(".lista1").click(function(){
-        alert("The paragraph was clicked.");
+      $(".planes").hide();
+    $("#planboton").click(function(){
+          $(".planes").toggle();
     });
 });
 
@@ -28,7 +29,7 @@
         <div class="cuadro1">
         <img class="logo" src="Captura.png"/>
             <ul>
-            <li class="lista1">PLAN</li>
+            <li class="lista1" id="planboton">PLAN</li>
             <li class="lista1">INSTALACIONES</li>
             </ul>
 
@@ -38,7 +39,16 @@
         <img class="botoninicio" src="boton-inicio-sesion.png"/>
         </div>
     </div>
-    <div id="carrusel"></div>
+    <div id="carrusel">
+      <div class="planes">
+        <ul>
+          <li>AUMENTO MASA MUSCULAR</li>
+          <li>DEFINICION</li>
+          <li>PERDIDA DE PESO</li>
+          <li>ACONDICIONAMIENTO</li>
+        </ul>
+      </div>
+    </div>
 </div>
 </body>
 </html>

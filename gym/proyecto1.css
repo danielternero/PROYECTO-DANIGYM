@@ -47,8 +47,26 @@ width: 170px;
 float: left;
 margin-left: 180px;
 margin-top: 70px;
+}
 
+#planboton{
+cursor: pointer;
+}
+.planes{
+clear: both;
+float: left;
+background-color: green;
+width: 500px;
+height: 200px;
+}
+.planes ul {
+list-style: none;
+display: inline;
 
+}
+.planes ul li {
+  width: 100px;
+  border-bottom: 3px solid red;
 }
 #carrusel {
 clear: both;

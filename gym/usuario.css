@@ -1,0 +1,65 @@
+#contenedor {
+width: 95%%;
+height: 620px;
+margin: 0px auto;
+
+font-family: 'Raleway', sans-serif;
+}
+#cabecera {
+width: 95%;
+height: 100px;
+float: left;
+
+margin-left: 2.5%;
+margin-top: 4px;
+}
+
+.cuadro1 {
+width: 80%;
+height:100px;
+float: left;
+
+}
+
+.cuadro2 {
+width: 20%;
+height: 100px;
+float: left;
+
+}
+
+.logo{
+margin-left: 20px;
+float: left;
+}
+.welcome{
+margin-left: 170px;
+float: left;
+border-bottom: 3px solid red;
+margin-top:30px;
+text-align: center;
+color:#585858;
+}
+
+.botoncerrar{
+margin-top: 20px;
+margin-left: 9px;
+
+}
+#cuerpo {
+clear: both;
+width: 95%;
+height: 200px;
+float: left;
+margin-left: 2.5%;
+
+}
+
+#pie {
+clear: both;
+width: 95%;
+height: 320px;
+float: left;
+margin-left: 2.5%;
+background-color: brown;
+}

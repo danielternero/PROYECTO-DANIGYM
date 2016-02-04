@@ -18,8 +18,17 @@
       $(".planes").hide();
     $("#planboton").click(function(){
           $(".planes").toggle();
+          $(".instalaciones").hide();
     });
+    $(".instalaciones").hide();
+  $("#planboton2").click(function(){
+        $(".instalaciones").toggle();
+        $(".planes").hide();
+  });
+
+
 });
+
 
 </script>
   </head>
@@ -30,7 +39,7 @@
         <img class="logo" src="Captura.png"/>
             <ul>
             <li class="lista1" id="planboton">PLAN</li>
-            <li class="lista1">INSTALACIONES</li>
+            <li class="lista1" id="planboton2">HORARIO DE APERTURA</li>
             </ul>
 
 
@@ -42,12 +51,24 @@
     <div id="carrusel">
       <div class="planes">
         <ul>
-          <li>AUMENTO MASA MUSCULAR</li>
-          <li>DEFINICION</li>
-          <li>PERDIDA DE PESO</li>
-          <li>ACONDICIONAMIENTO</li>
+          <li><span class="subrayado">AUMENTO MASA MUSCULAR</span></br>Entrenamiento cuyo objetivo es ganar masa muscular entrenando
+          con una alta carga, para lograr que los musculos aumenten.</li>
+          <li><span class="subrayado">DEFINICION</span></br>Entramiento cuyo objetico es definir la musculatura, trabajando con una carga media
+          y con un numero de repeticiones especifico.</li>
+          <li><span class="subrayado">PERDIDA DE PESO</span></br>Entrenamiento basado en la perdida de peso o "grasa", cuyos principales
+            ejercicios se centran en actividades cardiovasculares. </li>
+          <li><span class="subrayado">ACONDICIONAMIENTO</span></br>Se centra en el bienestar a nivel fisico y de salud, con ello mejoramos nuestra forma fisica.
+           </li>
         </ul>
       </div>
+      <div class="instalaciones">
+      <ul>
+        <li><span class="subrayado">Sala Fitness</span></br></li>
+        <li><span class="subrayado">Piscina</span></br></li>
+        <li><span class="subrayado">Actividades Dirigidas</span></br></li>
+        <li><span class="subrayado">Cardio</span></br></li>
+        <li><span class="subrayado">Pista de Atletismo</span></br></li>
+      <ul>
     </div>
 </div>
 </body>

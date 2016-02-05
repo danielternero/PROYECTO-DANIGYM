@@ -7,12 +7,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="libreria/jquery-2.2.0.min.js"></script>
+    <script src="libreria/jquery-ui.js"></script>
     <link rel="stylesheet" type="text/css" href="proyecto1.css"/>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+    <script rel="stylesheet" href="libreria/jquery-ui.css"></script>
     <link href='https://fonts.googleapis.com/css?family=Raleway:500,600' rel='stylesheet' type='text/css'>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+   
     <script>
     $(document).ready(function(){
       $(".planes").hide();
@@ -26,6 +26,9 @@
         $(".planes").hide();
   });
 
+  $("#botoninicio").click( function() {
+      $("#dialog").dialog();
+  });
 
 });
 
@@ -45,7 +48,7 @@
 
         </div>
         <div class="cuadro2">
-        <img class="botoninicio" src="boton-inicio-sesion.png"/>
+        <img id="botoninicio" src="boton-inicio-sesion.png"/>
         </div>
     </div>
     <div id="carrusel">
@@ -71,5 +74,63 @@
       <ul>
     </div>
 </div>
+<div id="dialog" style="display:none">
+  <form action="Proyecto1.php" method="post" class="login">
+  <table border="0">
+    <tr>
+      <td>USUARIO:  </td>
+      <td><input type="text" name="user"  required></td>
+    </tr>
+    <tr>
+      <td>CONTRASEÑA:  </td>
+      <td><input type="password" name="password"  required></td>
+    </tr>
+    <tr>
+      <td colspan="2"><input type=submit value="Entrar" id="enviar"></td>
+    </tr>
+  </table>
+  </form>
+</div>
+ 
+  </div>
+
+    <?php
+
+        if (isset($_POST["user"])) {
+
+          $connection = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
+
+          if ($connection->connect_errno) {
+              printf("Connection failed: %s\n", $connection->connect_error);
+              exit();
+          }
+
+          $query = $connection->prepare("SELECT * FROM usuario
+            WHERE nombre=? AND contrasena=md5(?)");
+        
+
+
+          $query->bind_param("ss",$_POST["user"],$_POST["password"]);
+
+          if ($query->execute()) {
+
+              $query->store_result();
+              
+              if ($query->num_rows===0) {
+                echo "LOGIN INVALIDO";
+              } else {
+
+                $_SESSION["user"]=$_POST["user"];
+                $_SESSION["language"]="es";
+
+                header("Location: usuario.php");
+              }
+          } else {
+            echo "Wrong Query";
+            var_dump($consulta);
+          }
+      }
+    ?>
+
 </body>
 </html>

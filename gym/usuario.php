@@ -14,7 +14,6 @@
     <link href='https://fonts.googleapis.com/css?family=Raleway:500,600' rel='stylesheet' type='text/css'>
 
 
-
   </head>
 <body>
 <div id="contenedor">
@@ -24,7 +23,7 @@
       <h1 class="welcome">NOMBRE Y APELLIDOS</h1>
     </div>
     <div class="cuadro2">
-      <img  class="botoncerrar" src="boton-cerrar-sesion.png"/>
+        <a href="cerrar.php"><img  class="botoncerrar" src="boton-cerrar-sesion.png"/></a>
     </div>
   </div>
   <div id="cuerpo">

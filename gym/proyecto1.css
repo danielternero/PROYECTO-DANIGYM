@@ -28,7 +28,7 @@ float: left;
 
 }
 
-.botoninicio{
+#botoninicio{
 margin-top: 30px;
 margin-left:32px;
 }
@@ -96,6 +96,16 @@ border-bottom: 3px solid red;
  #planboton2{
  cursor: pointer;
  }
+#dialog {
+background-color: forestgreen;
+height: inherit;
+    width: inherit;
+}
+.ui-dialog-titlebar-close {
+    position: absolute;
+    bottom: 0;
+}
+
 #carrusel {
 clear: both;
 width: 95%;
@@ -107,3 +117,4 @@ float: left;
 background-color: yellow;
 
 }
+

@@ -1,5 +1,26 @@
 <?php
   session_start();
+if(isset($_POST["user"])){$connection = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
+          if ($connection->connect_errno){
+              printf("Connection failed: %s\n", $connection->connect_error);
+              exit();
+          }
+          $query = $connection->prepare("SELECT * FROM usuario WHERE nombre=? AND contrasena=md5(?)");
+          $query->bind_param("ss",$_POST["user"],$_POST["password"]);
+          if ($query->execute()) {
+              $query->store_result();
+              if ($query->num_rows===0) {
+                echo "LOGIN INVALIDO";
+              } else {
+$_SESSION["user"]=$_POST["user"];
+$_SESSION["language"]="es";
+header('Location:usuario.php');
+              }
+          } else {
+            echo "Wrong Query";
+            var_dump($consulta);
+          }
+      }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,16 +30,13 @@
     <title></title>
     <script src="libreria/jquery-2.2.0.min.js"></script>
     <script src="libreria/jquery-ui.js"></script>
-
       <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
        <link rel="stylesheet" href="libreria/jquery-ui.css">
-
     <link rel="stylesheet" type="text/css" href="proyecto1.css"/>
     <script rel="stylesheet" href="libreria/jquery-ui.css"></script>
       <script type="text/javascript" src="libreria/jssor.slider.mini.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Raleway:500,600' rel='stylesheet' type='text/css'>
-
     <script>
     $(document).ready(function(){
       $(".planes").hide();
@@ -35,8 +53,7 @@
   $("#botoninicio").click( function() {
       $("#dialog").dialog();
   });
-// -------------------------AQUI VA EL SCRIPT DEL CARRUSEL DEPORRRTIVOOOO ------------------ //
-        
+/* -------------------------AQUI VA EL SCRIPT DEL CARRUSEL DEPORRRTIVOOOO ------------------ */
          var jssor_1_SlideoTransitions = [
               [{b:0,d:600,y:-290,e:{y:27}}],
               [{b:0,d:1000,y:185},{b:1000,d:500,o:-1},{b:1500,d:500,o:1},{b:2000,d:1500,r:360},{b:3500,d:1000,rX:30},{b:4500,d:500,rX:-30},{b:5000,d:1000,rY:30},{b:6000,d:500,rY:-30},{b:6500,d:500,sX:1},{b:7000,d:500,sX:-1},{b:7500,d:500,sY:1},{b:8000,d:500,sY:-1},{b:8500,d:500,kX:30},{b:9000,d:500,kX:-30},{b:9500,d:500,kY:30},{b:10000,d:500,kY:-30},{b:10500,d:500,c:{x:87.50,t:-87.50}},{b:11000,d:500,c:{x:-87.50,t:87.50}}],
@@ -87,14 +104,11 @@
             $(window).bind("load", ScaleSlider);
             $(window).bind("resize", ScaleSlider);
             $(window).bind("orientationchange", ScaleSlider);
-            //   ---------------------AQUI ACABA EL SCRIPT DEL CARRUSEL --------------- //
+            /* ---------------------AQUI ACABA EL SCRIPT DEL CARRUSEL ---------------** */
 });
-
-
 </script>
   </head>
-<body>
-<div id="contenedor">
+<body><div id="contenedor">
     <div id="cabecera">
         <div class="cuadro1">
         <img class="logo" src="Captura.png"/>
@@ -102,8 +116,6 @@
             <li class="lista1" id="planboton">PLAN</li>
             <li class="lista1" id="planboton2">HORARIO DE APERTURA</li>
             </ul>
-
-
         </div>
         <div class="cuadro2">
         <img id="botoninicio" src="boton-inicio-sesion.png"/>
@@ -155,22 +167,14 @@
     <div data-p="112.50" style="display: none;">
       <img data-u="image" src="../img/005.jpg" />
     </div>
-
 </div>
-
-
 <!-- Arrow Navigator -->
 <span data-u="arrowleft" class="jssora02l" style="top:0px;left:8px;width:55px;height:55px;" data-autocenter="2"><img src="../img/izquierda.png"></span>
 <span data-u="arrowright" class="jssora02r" style="top:0px;right:8px;width:55px;height:55px;" data-autocenter="2"><img src="../img/derecha.png"></span>
 </div>
 </div>
 <!-- -------------------------AQUI ACABA EL CARRUSEL ----------------------------- -->
-
-
-
 </div>
-
-
  <div id="dialog" title="INICIAR SESIÓN" style="display:none">
   <form action="Proyecto1.php" method="post" class="login">
   <table border="0">
@@ -188,46 +192,6 @@
   </table>
   </form>
 </div>
-
   </div>
-
-    <?php
-
-        if (isset($_POST["user"])) {
-
-          $connection = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
-
-          if ($connection->connect_errno) {
-              printf("Connection failed: %s\n", $connection->connect_error);
-              exit();
-          }
-
-          $query = $connection->prepare("SELECT * FROM usuario
-            WHERE nombre=? AND contrasena=md5(?)");
-
-
-
-          $query->bind_param("ss",$_POST["user"],$_POST["password"]);
-
-          if ($query->execute()) {
-
-              $query->store_result();
-
-              if ($query->num_rows===0) {
-                echo "LOGIN INVALIDO";
-              } else {
-
-                $_SESSION["user"]=$_POST["user"];
-                $_SESSION["language"]="es";
-
-                header("Location: usuario.php");
-              }
-          } else {
-            echo "Wrong Query";
-            var_dump($consulta);
-          }
-      }
-    ?>
-
 </body>
 </html>

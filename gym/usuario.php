@@ -4,8 +4,7 @@ if (!isset($_SESSION["user"])) {
           header("location: Proyecto1.php");
           }
             $connection = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
-        if ($result = $connection->query("SELECT * FROM plan join usuario on plan.FKDNI=usuario.DNI
-            WHERE nombre='".$_SESSION['user']."';")) {
+        if ($result = $connection->query("SELECT * FROM plan join usuario on plan.FKDNI=usuario.DNI join conforma on plan.ID_PLAN=conforma.FKID_PLAN join ejercicios on conforma.FKID_EJERCICIO=ejercicios.ID_EJERCICIO join instalaciones on ejercicios.FKID_INSTALACION=instalaciones.ID_INSTALACION WHERE nombre='".$_SESSION['user']."';")) {
               if ($result->num_rows===0) {
                 echo "NO TIENE PLAN ASIGNADO";
               } else {
@@ -29,6 +28,7 @@ if (!isset($_SESSION["user"])) {
                      $datos['pesofin']=$obj->PESO_FIN;
                      $datos['plan']=$obj->TIPO;
                      $datos['dni']=$obj->FKDNI;
+                     $datos['planactual']=$obj->TIPO;
                  }
               }
           } else {
@@ -59,12 +59,12 @@ if (!isset($_SESSION["user"])) {
   <div id="cabecera">
     <div class="cuadro1">
       <img  class="logo" src="captura.png"/>
-      <h1 class="welcome">NOMBRE <?php
+      <h1 class="welcome">¡HOLA <?php
  //while($obj2 = $result->fetch_object()) {
 //echo "<p>NOMBRE: ".$obj2->NOMBRE."</p>";
 // }
 echo strtoupper($_SESSION['user']);
-?>
+?>!
 </h1>
     </div>
     <div class="cuadro2">
@@ -72,9 +72,16 @@ echo strtoupper($_SESSION['user']);
     </div>
   </div>
   <div id="cuerpo">
-      <?php
-    echo $datos['nombre'];
-?>
+   <ul>
+    <li>Plan Actual: <?php echo $datos['planactual'];?></li>
+    <li>Fecha Inicio: <?php echo $datos['fechainicio'];?></li></li>
+    <li>Fecha Fin: <?php echo $datos['fechafin'];?></li></li>
+    <li>Peso :<?php echo $datos['pesoini'];?></li></li>
+    <li>Peso (objetivo):<?php echo $datos['pesofin'];?></li></li>
+    
+      
+    </ul>
+     
   </div>
   <div id="pie">
             <?php

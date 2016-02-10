@@ -25,7 +25,6 @@ width: 20%;
 height: 98px;
 float: left;
 
-
 }
 
 #botoninicio{
@@ -56,10 +55,10 @@ cursor: pointer;
 .planes{
 clear: both;
 float: left;
-background-color: green;
 width: 100%;
 height: 150px;
 font-size: 15px;
+background-color:#ECEFF1;
 
 }
 
@@ -85,13 +84,14 @@ width: 100%;
 border-bottom: 3px solid red;
 font-size: 16px;
 
+
 }
  .instalaciones{
    clear: both;
    float: left;
-   background-color: green;
    width: 100%;
    height: 150px;
+     background-color:#ECEFF1;
  }
 
  .instalaciones ul li {
@@ -124,8 +124,9 @@ height: 540px;
 margin-left: 2.5%;
 margin-top: 8px;
 float: left;
+background-color: #ECEFF1;
 
-background-color: yellow;
+
 
 }
 /* -------------------------------------CARRUSEL-------------------------------- */
@@ -176,17 +177,21 @@ background-color: yellow;
             overflow: hidden;
         }
         .jssora02l { background-position: -3px -33px; }
-        .jssora02r { background-position: -63px -33px; }
+        .jssora02r { background-position: -263px -33px;}     
         .jssora02l:hover { background-position: -123px -33px; }
         .jssora02r:hover { background-position: -183px -33px; }
         .jssora02l.jssora02ldn { background-position: -3px -33px; }
         .jssora02r.jssora02rdn { background-position: -63px -33px; }
 #carrusel_automatico {
 float: left;
-    height: 390px;
+    height: 350px;
     bottom: 0;
     width: 100%;
-    background-color: gray;
-    position: relative;
+    background-color: #E0E0E0;
+    position: absolute;
+    bottom: 0;
+    width: 94%;
+
 }
+
 /* -------------------------------------FIN CARRUSEL-------------------------------- */

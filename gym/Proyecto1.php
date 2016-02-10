@@ -21,6 +21,42 @@ header('Location:usuario.php');
             var_dump($consulta);
           }
       }
+/*-------------------------2º consulta ------------------------------------------------------*/
+$connection2 = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
+        if ($result2 = $connection2->query("SELECT * FROM instalaciones;")) {
+              if ($result2->num_rows===0) {
+              } else {
+                $i=0;
+                 while($obj = $result2->fetch_object()) {
+             
+                     $ins[$i]=$obj->SALA;
+                     $ins2[$i]=$obj->HORA_APERTURA;
+                     $ins3[$i]=$obj->HORA_CIERRE;
+                    $i++;
+                 }
+              }
+          } else {
+            echo "Wrong Query";
+            var_dump($result2);
+          }
+/*-----------------3ºconsulta--------------------------------------------------------------*/
+$connection3 = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
+        if ($result3 = $connection3->query("SELECT direccion_imagen FROM instalaciones;")) {
+              if ($result3->num_rows===0) {
+              } else {
+                $a=0;
+                 while($obj2 = $result3->fetch_object()) {
+             
+                     $img[$a]=$obj2->direccion_imagen;
+                     
+                    $a++;
+                 }
+              }
+          } else {
+            echo "Wrong Query";
+            var_dump($result3);
+          }
+/*-----------------------------------------------------------------------------------------*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -136,41 +172,41 @@ header('Location:usuario.php');
       </div>
       <div class="instalaciones">
       <ul>
-        <li><span class="subrayado">Sala Fitness</span></br></li>
-        <li><span class="subrayado">Piscina</span></br></li>
-        <li><span class="subrayado">Actividades Dirigidas</span></br></li>
-        <li><span class="subrayado">Cardio</span></br></li>
-        <li><span class="subrayado">Pista de Atletismo</span></br></li>
+        <li><?php echo "<span class='subrayado'>".$ins[4]."</span></br></br>HORA APERTURA: ".$ins2[4]."</br>HORA CIERRE: ".$ins3[4];?></li>
+        <li><?php echo "<span class='subrayado'>".$ins[1]."</span></br></br>HORA APERTURA: ".$ins2[1]."</br>HORA CIERRE: ".$ins3[1];?></li>
+        <li><?php echo "<span class='subrayado'>".$ins[2]."</span></br></br>HORA APERTURA: ".$ins2[2]."</br>HORA CIERRE: ".$ins3[2];?></li>
+       <li><?php echo "<span class='subrayado'>".$ins[3]."</span></br></br>HORA APERTURA: ".$ins2[3]."</br>HORA CIERRE: ".$ins3[3];?></li>
+        <li><?php echo "<span class='subrayado'>".$ins[0]."</span></br></br>HORA APERTURA: ".$ins2[0]."</br>HORA CIERRE: ".$ins3[0];?></li>
       <ul>
     </div>
 <!-- -------------------------AQUI EMPIEZA EL CARRUSEL ----------------------------- -->
 <div id="carrusel_automatico">
-    <div id="jssor_1" style="float: left; margin: 0 auto; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; visibility: hidden;">
+    <div id="jssor_1" style="float: left; margin: 0 auto; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; visibility: hidden; margin-left:330px;">
     <!-- Loading Screen -->
       <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
       <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
-      <div style="position:absolute;display:block;background:url('img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+      <div style="position:absolute;display:block;background:url('img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;margin-left:"></div>
     </div>
-    <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden;margin-left: 250px;">
+    <div data-u="slides" style="cursor: default; position: relative; width: 600px; height: 300px; overflow: hidden;margin-top:50px;">
       <div data-p="112.50" style="display: none;">
-        <img data-u="image" src="../img/instalaciones/actividadesdirigidas.jpg" />
+        <img data-u="image" src="<?php echo $img[0];?>" />
     </div>
     <div data-p="112.50" style="display: none;">
-      <img data-u="image" src="../img/007.jpg" />
+      <img data-u="image" src="<?php echo $img[1];?>" />
     </div>
     <div data-p="112.50" style="display: none;">
-      <img data-u="image" src="../img/003.jpg" />
+      <img data-u="image" src="<?php echo $img[2];?>" />
     </div>
     <div data-p="112.50" style="display: none;">
-      <img data-u="image" src="../img/004.jpg" />
+      <img data-u="image" src="<?php echo $img[3];?>" />
     </div>
     <div data-p="112.50" style="display: none;">
-      <img data-u="image" src="../img/005.jpg" />
+      <img data-u="image" src="<?php echo $img[4];?>"/>
     </div>
 </div>
 <!-- Arrow Navigator -->
-<span data-u="arrowleft" class="jssora02l" style="top:0px;left:8px;width:55px;height:55px;" data-autocenter="2"><img src="../img/izquierda.png"></span>
-<span data-u="arrowright" class="jssora02r" style="top:0px;right:8px;width:55px;height:55px;" data-autocenter="2"><img src="../img/derecha.png"></span>
+<span data-u="arrowleft" class="jssora02l" style="left:8px;width:55px;height:55px;margin-top:50px; margin-left:20px;" data-autocenter="2"><img src="../img/izquierda.png"></span>
+<span data-u="arrowright" class="jssora02r" style="right:8px;width:55px;height:55px;margin-left: 380px;margin-top:50px;" data-autocenter="2"><img src="../img/derecha.png"></span>
 </div>
 </div>
 <!-- -------------------------AQUI ACABA EL CARRUSEL ----------------------------- -->

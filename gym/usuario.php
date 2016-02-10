@@ -29,6 +29,7 @@ if (!isset($_SESSION["user"])) {
                      $datos['plan']=$obj->TIPO;
                      $datos['dni']=$obj->FKDNI;
                      $datos['planactual']=$obj->TIPO;
+                     $datos['fotousuario']=$obj->IMAGEN_PERSONAL;
                  }
               }
           } else {
@@ -72,16 +73,14 @@ echo strtoupper($_SESSION['user']);
     </div>
   </div>
   <div id="cuerpo">
-   <ul>
-    <li>Plan Actual: <?php echo $datos['planactual'];?></li>
-    <li>Fecha Inicio: <?php echo $datos['fechainicio'];?></li></li>
-    <li>Fecha Fin: <?php echo $datos['fechafin'];?></li></li>
-    <li>Peso :<?php echo $datos['pesoini'];?></li></li>
-    <li>Peso (objetivo):<?php echo $datos['pesofin'];?></li></li>
-    
-      
-    </ul>
-     
+
+    <div id="contenidofoto"><img id="fotousuario" src="<?php echo $datos['fotousuario'];?>" ></div> 
+      <div id="contenidodatos"><p>Plan Actual: <?php echo $datos['planactual'];?></p>
+          <p>Fecha Inicio: <?php echo $datos['fechainicio'];?></p>
+    <p>Fecha Fin: <?php echo $datos['fechafin'];?></p>
+    <p>Peso :<?php echo $datos['pesoini'];?></p>
+    <p>Peso (objetivo):<?php echo $datos['pesofin'];?></p>
+    </div>
   </div>
   <div id="pie">
             <?php

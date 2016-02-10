@@ -187,7 +187,7 @@ $connection3 = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
       <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
       <div style="position:absolute;display:block;background:url('img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;margin-left:"></div>
     </div>
-    <div data-u="slides" style="cursor: default; position: relative; width: 600px; height: 300px; overflow: hidden;margin-top:50px;">
+    <div data-u="slides" style="cursor: default; position: relative; width: 600px; height: 300px; overflow: hidden;margin-top:30px;">
       <div data-p="112.50" style="display: none;">
         <img data-u="image" src="<?php echo $img[0];?>" />
     </div>

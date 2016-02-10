@@ -1,5 +1,5 @@
 #contenedor {
-width: 95%%;
+width: 95%;
 height: 620px;
 margin: 0px auto;
 
@@ -49,17 +49,40 @@ margin-left: 9px;
 #cuerpo {
 clear: both;
 width: 95%;
-height: 200px;
+height: 455px;
 float: left;
 margin-left: 2.5%;
+background-color: aqua;
+
+}
+
+#contenidofoto {
+float: left;
+width: 30%;
+height: 340px;
+}
+
+#contenidodatos{
+float: left;
+width: 70%;
+height: 440px;
 
 }
 
 #pie {
 clear: both;
-width: 95%;
-height: 320px;
-float: left;
+width: 89%;
+height: 100px;
+position: fixed;
+bottom: 0;
 margin-left: 2.5%;
 background-color: brown;
+}
+
+#fotousuario {
+margin-top: 20px;
+margin-left: 30px;
+width: 240px;
+height: 320px;
+
 }

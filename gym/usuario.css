@@ -41,6 +41,16 @@ text-align: center;
 color:#585858;
 }
 
+.welcomeentreno{
+margin-left: 190px;
+float: left;
+border-bottom: 3px solid red;
+margin-top:30px;
+text-align: center;
+color:#585858;
+
+}
+
 .botoncerrar{
 margin-top: 20px;
 margin-left: 9px;
@@ -52,31 +62,14 @@ width: 95%;
 height: 455px;
 float: left;
 margin-left: 2.5%;
-background-color: aqua;
-
+background-color:#E0E0E0;
 }
 
+/*------------------FOTO USUARIO---------------------------*/
 #contenidofoto {
 float: left;
-width: 30%;
+width: 25%;
 height: 340px;
-}
-
-#contenidodatos{
-float: left;
-width: 70%;
-height: 440px;
-
-}
-
-#pie {
-clear: both;
-width: 89%;
-height: 100px;
-position: fixed;
-bottom: 0;
-margin-left: 2.5%;
-background-color: brown;
 }
 
 #fotousuario {
@@ -84,5 +77,80 @@ margin-top: 20px;
 margin-left: 30px;
 width: 240px;
 height: 320px;
+border-radius: 20px;
+}
+/*------------------------FIN FOTO USUARIO----------*/
+#contenidodatos{
+float: left;
+width: 35%;
+height: 440px;
+background-color: #ECEFF1;
+margin-top: 8px;
+border-radius: 35px;
+}
+
+#contenidodatos p{
+margin-top:35px;
+margin-left: 25px;
+
+}
+
+#contenidoplan{
+float: left;
+width: 35%;
+height: 440px;
+background-color: #ECEFF1;
+margin-top: 10px;
+border-radius: 35px;
+margin-left: 25px
+}
+
+#contenidoplan p{
+margin-top: 35px;
+margin-left: 25px;
+
+}
+
+.subrayado {
+border-bottom: 3px solid red;
+font-size: 16px;
+font-weight: bold;
+}
+*/-----------------------------------pie------------------------*/
+#pie {
+clear: both;
+width: 89%;
+height: 100px;
+position: fixed;
+bottom: 0;
+margin-left: 2.5%;
+}
+
+#logoentreno{
+width: 80px;
+height: 80px;
+margin-left:230px;
+margin-top: -50px;
+}
+
+
+*/-----------------------------TABLA-------------------*/
+
+table {  color: #333; width: 640px; border-collapse: collapse;}
+td, th { border: 1px solid transparent; height: 30px; }
+th { background: #D3D3D3; font-weight: bold; }
+td { background: #FAFAFA; text-align: center; width:10%; }
+tr:nth-child(even) td { background: #F1F1F1; }  
+tr:nth-child(odd) td { background: #FEFEFE; } 
+
+.logovideo{
+width: 50px;
+height: 50px;
+}
+
+.videourl{
+margin-left: 30%;
+margin-top: 30px;
+width: 100%;
 
 }

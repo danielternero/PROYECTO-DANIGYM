@@ -30,6 +30,9 @@ if (!isset($_SESSION["user"])) {
                      $datos['dni']=$obj->FKDNI;
                      $datos['planactual']=$obj->TIPO;
                      $datos['fotousuario']=$obj->IMAGEN_PERSONAL;
+                     $datos['edad']=$obj->EDAD;
+                     $datos['alta']=$obj->FECHA_ALTA;
+                      $datos['correo']=$obj->CORREO_ELECTRONICO;
                  }
               }
           } else {
@@ -75,17 +78,29 @@ echo strtoupper($_SESSION['user']);
   <div id="cuerpo">
 
     <div id="contenidofoto"><img id="fotousuario" src="<?php echo $datos['fotousuario'];?>" ></div> 
-      <div id="contenidodatos"><p>Plan Actual: <?php echo $datos['planactual'];?></p>
-          <p>Fecha Inicio: <?php echo $datos['fechainicio'];?></p>
-    <p>Fecha Fin: <?php echo $datos['fechafin'];?></p>
-    <p>Peso :<?php echo $datos['pesoini'];?></p>
-    <p>Peso (objetivo):<?php echo $datos['pesofin'];?></p>
+      <div id="contenidodatos">
+          <p><span class="subrayado">DATOS PERSONALES:</span></p>
+          <p>NOMBRE Y APELLIDOS: <?php echo $datos['nombre']." ".$datos['apellidos'];?></p>
+          <p>DNI: <?php echo $datos['dni']?></p><p>EDAD <?php echo $datos['edad']?></p>
+          <p>PESO: <?php echo $datos['pesoini'];?></p>
+          <p>FECHA ALTA: <?php echo $datos['alta'];?></p>
+            <p>CORREO ELECTRONICO : <?php echo $datos['correo'];?></p>
     </div>
+        <div  id="contenidoplan">
+           <p><span class="subrayado">ENTRENAMIENTO:</span></p>
+            <p>PLAN ACTUAL: <?php echo $datos['planactual'];?></p>
+            <p>FECHA INICIO: <?php echo $datos['fechainicio'];?></p>
+            <p>FECHA FIN: <?php echo $datos['fechafin'];?></p>
+            <p>PESO (objetivo): <?php echo $datos['pesofin'];?></p></br>
+    <p><strong>IR AL ENTRENAMIENTO </strong><a href="entreno_usuario.php"><img id="logoentreno" src="../img/entreno.jpg"></a></p>
+      </div>
+            
+        </div>
+         
+   
   </div>
   <div id="pie">
-            <?php
-    echo $datos['apellidos'];
-?>
+
 </div>
 
 

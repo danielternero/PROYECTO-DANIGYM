@@ -28,8 +28,13 @@ float: left;
 }
 
 #botoninicio{
-margin-top: 30px;
+margin-top:0px;
 margin-left:32px;
+}
+
+#botoncrear{
+margin-left:32px;
+margin-top: -10px;
 }
 
 .logo{

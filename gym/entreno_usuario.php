@@ -96,17 +96,29 @@ if (!isset($_SESSION["user"])) {
         }
         ?>
 </table>
-        <div class='videourl'>
+        
         <?php
         if (isset($_GET['id'])){
+            echo "<div class='videourl'>";
         echo "
-        <video  width'320' height='240' controls>
+        <video height='240' controls>
         <source src=".$enlace[$_GET['id']]." type='video/mp4'>
         Your browser does not support the video tag.
-        </video>";}
+        </video>";
+        echo "<a href='entreno_usuario.php'><img class='iconocerrar' src='../img/cerrar-icono.png'></a>";
+        
+        echo "</div>";
+        }
         ?>
-        </div>
+    
 </div>
 
+      
+      
+      
+      
+      
+      
+      
     </body>
     </html>

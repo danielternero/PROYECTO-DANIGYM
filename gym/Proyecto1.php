@@ -87,8 +87,13 @@ $connection3 = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
   });
 
   $("#botoninicio").click( function() {
-      $("#dialog").dialog();
+      $("#dialog").dialog({
+      modal: true,
+      });
   });
+        
+  
+     
 /* -------------------------AQUI VA EL SCRIPT DEL CARRUSEL DEPORRRTIVOOOO ------------------ */
          var jssor_1_SlideoTransitions = [
               [{b:0,d:600,y:-290,e:{y:27}}],
@@ -155,6 +160,7 @@ $connection3 = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
         </div>
         <div class="cuadro2">
         <img id="botoninicio" src="boton-inicio-sesion.png"/>
+        <a href="crear_usuario.php"><img id="botoncrear" src="crear-usuario.png"/></a>
         </div>
     </div>
     <div id="carrusel">
@@ -228,6 +234,7 @@ $connection3 = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
   </table>
   </form>
 </div>
+
   </div>
 </body>
 </html>

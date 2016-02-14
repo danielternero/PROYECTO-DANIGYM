@@ -4,10 +4,27 @@ if (!isset($_SESSION["user"])) {
           header("location: Proyecto1.php");
           }
             $connection = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
-        if ($result = $connection->query("SELECT * FROM plan join usuario on plan.FKDNI=usuario.DNI join conforma on plan.ID_PLAN=conforma.FKID_PLAN join ejercicios on conforma.FKID_EJERCICIO=ejercicios.ID_EJERCICIO join instalaciones on ejercicios.FKID_INSTALACION=instalaciones.ID_INSTALACION WHERE nombre='".$_SESSION['user']."';")) {
+        if ($result = $connection->query("SELECT * FROM plan join usuario on plan.FKDNI=usuario.DNI  WHERE                  nombre='".$_SESSION['user']."';")) {
               if ($result->num_rows===0) {
-                echo "NO TIENE PLAN ASIGNADO";
-              } else {
+                if ($result2 = $connection->query("SELECT * FROM usuario WHERE nombre='".$_SESSION['user']."';")) {
+                    if ($result2->num_rows===0){
+                    echo "usuario inexistente";
+                    } 
+                else {
+                      while($obj2 = $result2->fetch_object()) {
+                     $datos['nombre']=$obj2->NOMBRE;
+                     $datos['apellidos']=$obj2->APELLIDO;
+                     $datos['pesoini']=$obj2->PESO;
+                     $datos['dni']=$obj2->DNI;
+                     $datos['fotousuario']=$obj2->IMAGEN_PERSONAL;
+                     $datos['edad']=$obj2->EDAD;
+                     $datos['alta']=$obj2->FECHA_ALTA;
+                      $datos['correo']=$obj2->CORREO_ELECTRONICO;
+                 }
+                    }
+                }
+                
+                } else {
                 //THE LOOP CONTINUES WHILE WE HAVE ANY OBJECT (Query Row) LEFT
                  while($obj = $result->fetch_object()) {
                /* echo "<table>";
@@ -64,9 +81,6 @@ if (!isset($_SESSION["user"])) {
     <div class="cuadro1">
       <img  class="logo" src="captura.png"/>
       <h1 class="welcome">¡HOLA <?php
- //while($obj2 = $result->fetch_object()) {
-//echo "<p>NOMBRE: ".$obj2->NOMBRE."</p>";
-// }
 echo strtoupper($_SESSION['user']);
 ?>!
 </h1>
@@ -86,14 +100,23 @@ echo strtoupper($_SESSION['user']);
           <p>FECHA ALTA: <?php echo $datos['alta'];?></p>
             <p>CORREO ELECTRONICO : <?php echo $datos['correo'];?></p>
     </div>
-        <div  id="contenidoplan">
-           <p><span class="subrayado">ENTRENAMIENTO:</span></p>
-            <p>PLAN ACTUAL: <?php echo $datos['planactual'];?></p>
-            <p>FECHA INICIO: <?php echo $datos['fechainicio'];?></p>
-            <p>FECHA FIN: <?php echo $datos['fechafin'];?></p>
-            <p>PESO (objetivo): <?php echo $datos['pesofin'];?></p></br>
-    <p><strong>IR AL ENTRENAMIENTO </strong><a href="entreno_usuario.php"><img id="logoentreno" src="../img/entreno.jpg"></a></p>
-      </div>
+      <?php 
+    if (!isset($result2)){   
+        echo "<div  id='contenidoplan'>";
+           echo "<p><span class='subrayado'>ENTRENAMIENTO:</span></p>";
+            echo "<p>PLAN ACTUAL:".$datos['planactual']."</p>";
+            echo "<p>FECHA INICIO:".$datos['fechainicio']."</p>";
+            echo "<p>FECHA FIN:".$datos['fechafin']."</p>";
+            echo "<p>PESO (objetivo):".$datos['pesofin']."</p></br>";
+    echo "<p><strong>IR AL ENTRENAMIENTO </strong><a href='entreno_usuario.php'><img id='logoentreno' src='../img/entreno.jpg'></a></p>";
+    echo "</div>";
+    }
+    else{
+     echo "<div  id='contenidoplan'>";
+    echo "<p>El entrenador aun no te he asignado ningun plan</p>";
+    echo "</div>";
+    }    
+    ?>
             
         </div>
          

@@ -25,17 +25,16 @@
   <div id="cabecera">
     <div class="cuadro1">
       <img  class="logo" src="captura.png"/>
-    
-    </div>
-    <div class="cuadro2">
-        
+         <h1 class="welcome">CREAR USUARIO</h1>
     </div>
   </div>
   <div id="cuerpo">
 <form method="post">
+    <fieldset>
+    <legend>DATOS PERSONALES </legend>
     Dni:
     <input type="text" name="DNI" maxlength="9" /></br></br>
-    Nombre de usuario:
+    Nombre:
   <input type="text" name="NOMBRE"  /></br></br>
     Apellidos:
     <input type="text" name="APELLIDO"  /></br></br>
@@ -45,18 +44,21 @@
     Peso:   
     <input type="number" name="PESO"  /></br></br>
     Enfermedad:
-<textarea  name="ENFERMEDAD" placeholder="Indique si padece alguna enfermedad" /></textarea></br></br>
-    Nombre de usuario:
-    <input type="text" name="USUARIO" /></br></br>
+    <textarea  name="ENFERMEDAD" placeholder="Indique si padece alguna enfermedad" /></textarea></br></br>
     Correo electronico:
     <input type="email" name="CORREO_ELECTRONICO"  /></br></br>
+    </fieldset>
+    <fieldset>
+    <legend>DATOS DE USUARIO </legend>
+    Nombre de usuario:
+    <input type="text" name="USUARIO" /></br></br>
+    
     Contraseña:
     <input type="password" name="CONTRASENA"  /></br></br>
-    IMAGEN_PERSONAL:
+    Imagen personal (url):
     <input type="text" name="IMAGEN_PERSONAL"  /></br></br>
-    
- 
-  <input type="submit" value="Enviar" />
+    </fieldset>
+    <input type="submit" value="Crear" />
 </form>
 
     </div>
@@ -73,8 +75,9 @@
         $edad=$_POST["EDAD"];
         $peso=$_POST["PESO"];
         $enfermedad=$_POST["ENFERMEDAD"];
-        $usuario=$_POST["USUARIO"];
         $correo_electronico=$_POST["CORREO_ELECTRONICO"];
+        $usuario=$_POST["USUARIO"];
+        
         $contrasena=$_POST["CONTRASENA"];
         $img=$_POST["IMAGEN_PERSONAL"];
         $insert="INSERT INTO usuario VALUES ('$dni', '$nombre', '$apellido',current_date(), '$edad', '$peso', '$enfermedad','$usuario', '$correo_electronico', MD5('$contrasena'),'1', '$img')";

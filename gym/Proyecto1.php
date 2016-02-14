@@ -12,15 +12,27 @@ if(isset($_POST["user"])){$connection = new mysqli("localhost", "gymadmin", "vas
               if ($query->num_rows===0) {
                 echo "LOGIN INVALIDO";
               } else {
-$_SESSION["user"]=$_POST["user"];
+            
+            $obj4=$query->fetch();
+            if ($obj4->NIVEL_DE_USUARIO===0){
+            $_SESSION["user"]=$_POST["user"];
+            $_SESSION["nivel"]="administrador";
+            header('Location:administrador.php');    
+            }
+            else {
+            $_SESSION["user"]=$_POST["user"];
 $_SESSION["language"]="es";
 header('Location:usuario.php');
+            }
+            
+
               }
           } else {
             echo "Wrong Query";
             var_dump($consulta);
           }
       }
+
 /*-------------------------2º consulta ------------------------------------------------------*/
 $connection2 = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
         if ($result2 = $connection2->query("SELECT * FROM instalaciones;")) {

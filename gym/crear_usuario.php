@@ -21,6 +21,7 @@
           exit();
       }
 ?>   
+
 <div id="contenedor">
   <div id="cabecera">
     <div class="cuadro1">
@@ -30,11 +31,11 @@
   </div>
   <div id="cuerpo">
 <form method="post">
-    <fieldset>
-    <legend>DATOS PERSONALES </legend>
+    <fieldset class="formulario">
+        <legend><span class="subrayado">DATOS PERSONALES </span></legend></br>
     Dni:
     <input type="text" name="DNI" maxlength="9" /></br></br>
-    Nombre:
+    Nombre:                     
   <input type="text" name="NOMBRE"  /></br></br>
     Apellidos:
     <input type="text" name="APELLIDO"  /></br></br>
@@ -48,8 +49,8 @@
     Correo electronico:
     <input type="email" name="CORREO_ELECTRONICO"  /></br></br>
     </fieldset>
-    <fieldset>
-    <legend>DATOS DE USUARIO </legend>
+    <fieldset class="formulario">
+    <legend ><span class="subrayado">DATOS DE USUARIO </span></legend></br>
     Nombre de usuario:
     <input type="text" name="USUARIO" /></br></br>
     
@@ -57,8 +58,9 @@
     <input type="password" name="CONTRASENA"  /></br></br>
     Imagen personal (url):
     <input type="text" name="IMAGEN_PERSONAL"  /></br></br>
+<input type="submit" value="Crear" />
     </fieldset>
-    <input type="submit" value="Crear" />
+    
 </form>
 
     </div>

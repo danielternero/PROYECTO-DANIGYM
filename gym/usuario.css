@@ -116,7 +116,7 @@ border-bottom: 3px solid red;
 font-size: 16px;
 font-weight: bold;
 }
-*/-----------------------------------pie------------------------*/
+/*-----------------------------------pie------------------------*/
 #pie {
 clear: both;
 width: 89%;
@@ -134,7 +134,7 @@ margin-top: -50px;
 }
 
 
-*/-----------------------------TABLA-------------------*/
+/*-----------------------------TABLA-------------------*/
 
 table {  color: #333; width: 640px; border-collapse: collapse;}
 td, th { border: 1px solid transparent; height: 30px; }
@@ -166,4 +166,16 @@ top: 200px;
 float: right;
 margin-top: -275px;
 
+}
+
+
+/*------------formulario------------------*/
+
+.formulario{
+float: left;
+width: 47%;
+margin-top: 30px;
+}
+.subrayado {
+border-bottom: 3px solid red;
 }

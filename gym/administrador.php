@@ -39,7 +39,7 @@
     </div>
   </div>
   <div id="cuerpo">
-        <table class="tableentreno">  
+        <table>  
         <tr>
             <td>ELIMINAR USUARIO</td>
             <td>USUARIOS</td>

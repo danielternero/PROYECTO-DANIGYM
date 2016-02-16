@@ -19,7 +19,7 @@ if (!isset($_SESSION["user"])) {
                      $datos['fotousuario']=$obj2->IMAGEN_PERSONAL;
                      $datos['edad']=$obj2->EDAD;
                      $datos['alta']=$obj2->FECHA_ALTA;
-                      $datos['correo']=$obj2->CORREO_ELECTRONICO;
+                     $datos['correo']=$obj2->CORREO_ELECTRONICO;
                  }
                     }
                 }

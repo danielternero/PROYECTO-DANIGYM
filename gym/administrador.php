@@ -1,3 +1,22 @@
+<?php
+ 
+            $connection = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
+        if ($result = $connection->query("SELECT * FROM usuario where NIVEL_DE_USUARIO=1;")) {
+              if ($result->num_rows===0) {
+              echo "No hay ningun usuario";
+              }
+            else {
+            $x=0;
+            while($obj = $result->fetch_object()){
+            
+            $usuario[$x]=$obj->NOMBRE;
+            $dni[$x]=$obj->DNI;
+            $x++;
+            
+                }
+            }
+        }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,17 +30,7 @@
     <link href='https://fonts.googleapis.com/css?family=Raleway:500,600' rel='stylesheet' type='text/css'>
 </head>
 <body>
-
-<?php
     
-      if (!isset($_POST["DNI"])) :
-      $connection = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
-      if ($connection->connect_errno) {
-          printf("Connection failed: %s\n", $mysqli->connect_error);
-          exit();
-      }
-?>   
-
 <div id="contenedor">
   <div id="cabecera">
     <div class="cuadro1">
@@ -30,64 +39,25 @@
     </div>
   </div>
   <div id="cuerpo">
-        <table class="formulario">  
+        <table class="tableentreno">  
         <tr>
-            <td>EDITAR DATOS</td>
-            <td>AÑADIR PLAN</td>
+            <td>ELIMINAR USUARIO</td>
+            <td>USUARIOS</td>
+            <td>ASIGNAR PLAN</td>
             <td>BORRAR PLAN</td>
-            <td>BORRAR USUARIO</td>
-            <td></td>
-        
         </tr>
-   
-<form method="post">
-    
-    <fieldset class="formulario">
-    <legend ><span class="subrayado">CREAR PLAN</span></legend></br>
-    ID_PLAN:
-    <input type="text" name=""/></br></br>
-    FECHA INICIO:
-    <input type="date" name=""/></br></br>
-    FECHA FIN:
-    <input type="date" name=""/></br></br>
-    P:
-    <input type="date" name=""/></br></br>
-    <select name="USUARIO"></select></br></br>
-    
-    Contraseña:
-    <input type="password" name="CONTRASENA"  /></br></br>
-    Imagen personal (url):
-    <input type="text" name="IMAGEN_PERSONAL"  /></br></br>
-<input type="submit" value="Crear" />
-    </fieldset>
-    
-</form>
-
+<?php
+        for($y=0;$y<sizeof($usuario);$y++){
+        echo "<tr>";
+        echo "<td><a href='borrar.php?id=$dni[$y]'><img class='logoeliminar' src='../img/eliminar.jpg'></a></td>";
+        echo "<td>".$usuario[$y]."</td>";
+        echo "</tr>";
+        }
+        ?>
+      </table>  
     </div>
   <div id="pie">
 
 </div>
-     <?php  else: ?>
-        <?php
-        $connection = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
-        $dni=$_POST["DNI"];
-        $nombre=$_POST["NOMBRE"];
-        $apellido=$_POST["APELLIDO"];
-        $fecha=$_POST["FECHA_ALTA"];
-        $edad=$_POST["EDAD"];
-        $peso=$_POST["PESO"];
-        $enfermedad=$_POST["ENFERMEDAD"];
-        $correo_electronico=$_POST["CORREO_ELECTRONICO"];
-        $usuario=$_POST["USUARIO"];
-        
-        $contrasena=$_POST["CONTRASENA"];
-        $img=$_POST["IMAGEN_PERSONAL"];
-        $insert="INSERT INTO usuario VALUES ('$dni', '$nombre', '$apellido',current_date(), '$edad', '$peso', '$enfermedad','$usuario', '$correo_electronico', MD5('$contrasena'),'1', '$img')";
-        $connection->query( $insert );
-    header('Location: Proyecto1.php');
-   ?>
-
-        <?php endif ?>
-    
 </body>
 </html>

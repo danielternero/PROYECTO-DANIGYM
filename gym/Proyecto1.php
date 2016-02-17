@@ -1,37 +1,43 @@
 <?php
   session_start();
-if(isset($_POST["user"])){$connection = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
+if(isset($_POST["user"])){
+    
+          $connection = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
           if ($connection->connect_errno){
               printf("Connection failed: %s\n", $connection->connect_error);
               exit();
           }
-          $query = $connection->prepare("SELECT * FROM usuario WHERE nombre=? AND contrasena=md5(?)");
+          
+          $query = $connection->prepare("SELECT nivel_de_usuario, nombre FROM usuario WHERE nombre=? AND contrasena=md5(?)");
           $query->bind_param("ss",$_POST["user"],$_POST["password"]);
           if ($query->execute()) {
-              $query->store_result();
+              
+              
+              $query->store_result();              
+              var_dump($query);
+            
               if ($query->num_rows===0) {
                 echo "LOGIN INVALIDO";
               } else {
-            
-            $obj4=$query->fetch();
-            if ($obj4->NIVEL_DE_USUARIO===0){
-            $_SESSION["user"]=$_POST["user"];
-            $_SESSION["nivel"]="administrador";
-            header('Location:administrador.php');    
-            }
-            else {
-            $_SESSION["user"]=$_POST["user"];
-$_SESSION["language"]="es";
-header('Location:usuario.php');
-            }
-            
-
+                
+                $query->bind_result($nivel,$nombre_user);
+                $resultado = $query->fetch();  
+                  
+                $_SESSION["nivel"]=$nivel;
+                $_SESSION["user"]=$nombre_user;  
+                $_SESSION["language"]="es";  
+                
+                if ($nivel==0 ) {
+                    header('Location:administrador.php');  
+                } else {
+                    header('Location:usuario.php');  
+                }
+                  
               }
-          } else {
-            echo "Wrong Query";
-            var_dump($consulta);
-          }
-      }
+        }
+             
+}
+            
 
 /*-------------------------2º consulta ------------------------------------------------------*/
 $connection2 = new mysqli("localhost", "gymadmin", "vasygym", "danigym");

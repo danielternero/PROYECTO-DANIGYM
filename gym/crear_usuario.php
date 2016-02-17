@@ -34,28 +34,28 @@
     <fieldset class="formulario">
         <legend><span class="subrayado">DATOS PERSONALES </span></legend></br>
     Dni:
-    <input type="text" name="DNI" maxlength="9" /></br></br>
+    <input type="text" name="DNI" maxlength="9" required/></br></br>
     Nombre:                     
-  <input type="text" name="NOMBRE"  /></br></br>
+  <input type="text" name="NOMBRE" required /></br></br>
     Apellidos:
-    <input type="text" name="APELLIDO"  /></br></br>
+    <input type="text" name="APELLIDO" required /></br></br>
 
     Edad:
-    <input type="number" name="EDAD" /></br></br>
+    <input type="number" name="EDAD" required/></br></br>
     Peso:   
-    <input type="number" name="PESO"  /></br></br>
+    <input type="number" name="PESO" required/></br></br>
     Enfermedad:
     <textarea  name="ENFERMEDAD" placeholder="Indique si padece alguna enfermedad" /></textarea></br></br>
     Correo electronico:
-    <input type="email" name="CORREO_ELECTRONICO"  /></br></br>
+    <input type="email" name="CORREO_ELECTRONICO" required /></br></br>
     </fieldset>
     <fieldset class="formulario">
     <legend ><span class="subrayado">DATOS DE USUARIO </span></legend></br>
     Nombre de usuario:
-    <input type="text" name="USUARIO" /></br></br>
+    <input type="text" name="USUARIO" required/></br></br>
     
     Contraseña:
-    <input type="password" name="CONTRASENA"  /></br></br>
+    <input type="password" name="CONTRASENA" required /></br></br>
     Imagen personal (url):
     <input type="text" name="IMAGEN_PERSONAL"  /></br></br>
 <input type="submit" value="Crear" />
@@ -73,17 +73,20 @@
         $dni=$_POST["DNI"];
         $nombre=$_POST["NOMBRE"];
         $apellido=$_POST["APELLIDO"];
-        $fecha=$_POST["FECHA_ALTA"];
         $edad=$_POST["EDAD"];
         $peso=$_POST["PESO"];
         $enfermedad=$_POST["ENFERMEDAD"];
         $correo_electronico=$_POST["CORREO_ELECTRONICO"];
         $usuario=$_POST["USUARIO"];
         
-        $contrasena=$_POST["CONTRASENA"];
+        $contrasena=md5($_POST["CONTRASENA"]);
+        var_dump($_POST);
         $img=$_POST["IMAGEN_PERSONAL"];
-        $insert="INSERT INTO usuario VALUES ('$dni', '$nombre', '$apellido',current_date(), '$edad', '$peso', '$enfermedad','$usuario', '$correo_electronico', MD5('$contrasena'),'1', '$img')";
+        $insert="INSERT INTO usuario VALUES ('$dni', '$nombre', '$apellido','current_date()', $edad, $peso, '$enfermedad','$usuario', '$correo_electronico', '$contrasena',1, '$img')";
+//    var_dump($insert);
+        
         $connection->query( $insert );
+$connection->query( "UPDATE usuario set FECHA_ALTA=current_date() where DNI='$dni';");
     header('Location: Proyecto1.php');
    ?>
 

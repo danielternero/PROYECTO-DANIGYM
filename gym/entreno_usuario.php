@@ -101,8 +101,8 @@ if (!isset($_SESSION["user"])) {
         if (isset($_GET['id'])){
             echo "<div class='videourl'>";
         echo "
-        <video height='240' controls>
-        <source src=".$enlace[$_GET['id']]." type='video/mp4'>
+        <video height='240' controls autoplay>
+        <source src=".$enlace[$_GET['id']]." type='video/mp4' >
         Your browser does not support the video tag.
         </video>";
         echo "<a href='entreno_usuario.php'><img class='iconocerrar' src='../img/cerrar-icono.png'></a>";

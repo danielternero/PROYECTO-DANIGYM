@@ -1,21 +1,30 @@
 <?php
- 
+  session_start();
+
+if (!isset($_SESSION["user"])) {
+          header("location: Proyecto1.php");
+}
+if ($_SESSION["nivel"]==1) {
+            
+            header("location: Proyecto1.php");
+          } 
             $connection = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
-        if ($result = $connection->query("SELECT * FROM usuario where NIVEL_DE_USUARIO=1;")) {
-              if ($result->num_rows===0) {
+ if ($result = $connection->query("SELECT * FROM usuario where NIVEL_DE_USUARIO=1;")) {
+     if ($result->num_rows===0) {
               echo "No hay ningun usuario";
               }
             else {
-            $x=0;
+            $y=0;
             while($obj = $result->fetch_object()){
             
-            $usuario[$x]=$obj->NOMBRE;
-            $dni[$x]=$obj->DNI;
-            $x++;
+            $usuario[$y]=$obj->NOMBRE;
+            $dni[$y]=$obj->DNI;
+
+            $y++;
             
                 }
             }
-        }
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,22 +44,29 @@
   <div id="cabecera">
     <div class="cuadro1">
       <img  class="logo" src="captura.png"/>
-         <h1 class="welcome">ZONA DE ADMINISTRACION</h1>
+         <h1 id="tituloadmin" class="welcome">ZONA DE ADMINISTRACION</h1>
+         </div>
+      <div class="cuadro2">
+        <a href="cerrar.php"><img  class="botoncerrar" src="boton-cerrar-sesion.png"/></a>
     </div>
   </div>
   <div id="cuerpo">
         <table>  
         <tr>
-            <td>ELIMINAR USUARIO</td>
-            <td>USUARIOS</td>
-            <td>ASIGNAR PLAN</td>
-            <td>BORRAR PLAN</td>
+            <th>USUARIOS</th>
+            <th>EDITAR USUARIO</th>
+            <th>ASIGNAR PLAN</th>
+            <th>BORRAR PLAN</th>
+            <th>ELIMINAR USUARIO</th>
         </tr>
 <?php
         for($y=0;$y<sizeof($usuario);$y++){
         echo "<tr>";
-        echo "<td><a href='borrar.php?id=$dni[$y]'><img class='logoeliminar' src='../img/eliminar.jpg'></a></td>";
         echo "<td>".$usuario[$y]."</td>";
+        echo "<td><a href='editarusuario.php'><img class='logoadmin'src='../img/editarusuario.ico'</a></td>";
+        echo "<td><a href='asignarplan.php'><img class='logoadmin'src='../img/asignarplan.png'</a></td>";
+        echo "<td><a href='eliminarplan.php?id=$dni[$y]'><img class='logoadmin'src='../img/eliminarplan.png'</a></td>";
+        echo "<td><a href='borrar.php?id=$dni[$y]'><img class='logoadmin' src='../img/eliminar.jpg'></a></td>";
         echo "</tr>";
         }
         ?>

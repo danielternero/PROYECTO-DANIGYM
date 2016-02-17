@@ -137,7 +137,7 @@ margin-top: -50px;
 /*-----------------------------TABLA-------------------*/
 
 td, th { border: 1px solid transparent; height: 30px; }
-th { background: #D3D3D3; font-weight: bold; }
+th { background: #D3D3D3; font-weight: bold; width:10%; }
 td { background: #FAFAFA; text-align: center; width:10%; }
 tr:nth-child(even) td { background: #F1F1F1; }  
 tr:nth-child(odd) td { background: #FEFEFE; } 
@@ -181,9 +181,13 @@ border-bottom: 3px solid red;
 
 /*----------------administracion---------------------*/
 
-.logoeliminar{
+.logoadmin{
 height: 50px;
 width: 50px;
 border-radius: 20px;
+}
+
+#tituloadmin {
+margin-left: 200px;
 
 }

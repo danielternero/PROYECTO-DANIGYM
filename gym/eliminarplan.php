@@ -21,10 +21,7 @@
     $connection->query("DELETE FROM conforma WHERE conforma.FKID_PLAN='".$idplan."';");
     $connection->query("DELETE FROM plan WHERE plan.FKDNI='".$_GET['id']."';");
 
-   echo "<h1>PLAN BORRADO CON ÉXITO</h1>";
-    sleep(3);
-     
-       header("Location: administrador.php");
+    header("Location: administrador.php");
          
           unset($obj);
           unset($connection);

@@ -14,7 +14,6 @@ if(isset($_POST["user"])){
               
               
               $query->store_result();              
-              var_dump($query);
             
               if ($query->num_rows===0) {
                 echo "LOGIN INVALIDO";
@@ -186,7 +185,7 @@ $connection3 = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
         <ul>
           <li><p><span class="subrayado">AUMENTO MASA MUSCULAR</span></p></br>Entrenamiento cuyo objetivo es ganar masa muscular entrenando
           con una alta carga, para lograr que los musculos aumenten.</li>
-          <li><p><span class="subrayado">DEFINICION</span></p></br>Entramiento cuyo objetico es definir la musculatura, trabajando con una carga media
+          <li><p><span class="subrayado">DEFINICION</span></p></br>Entramiento cuyo objetivo es definir la musculatura, trabajando con una carga media
           y con un numero de repeticiones especifico.</li>
           <li><p><span class="subrayado">PERDIDA DE PESO</span></p></br>Entrenamiento basado en la perdida de peso o "grasa", cuyos principales
             ejercicios se centran en actividades cardiovasculares. </li>

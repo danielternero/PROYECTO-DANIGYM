@@ -113,7 +113,7 @@ echo strtoupper($_SESSION['user']);
     }
     else{
      echo "<div  id='contenidoplan'>";
-    echo "<p>El entrenador aun no te he asignado ningun plan</p>";
+    echo "<p>El entrenador aun no te ha asignado ningun plan</p>";
     echo "</div>";
     }    
     ?>

@@ -1,8 +1,9 @@
 <?php
+  include_once("./configuraciondb.php");
   session_start();
 if(isset($_POST["user"])){
     
-          $connection = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
+          $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
           if ($connection->connect_errno){
               printf("Connection failed: %s\n", $connection->connect_error);
               exit();
@@ -39,7 +40,7 @@ if(isset($_POST["user"])){
             
 
 /*-------------------------2º consulta ------------------------------------------------------*/
-$connection2 = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
+$connection2 = new mysqli($db_host, $db_user, $db_password, $db_name);
         if ($result2 = $connection2->query("SELECT * FROM instalaciones;")) {
               if ($result2->num_rows===0) {
               } else {
@@ -57,7 +58,7 @@ $connection2 = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
             var_dump($result2);
           }
 /*-----------------3ºconsulta--------------------------------------------------------------*/
-$connection3 = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
+$connection3 = new mysqli($db_host, $db_user, $db_password, $db_name);
         if ($result3 = $connection3->query("SELECT direccion_imagen FROM instalaciones;")) {
               if ($result3->num_rows===0) {
               } else {

@@ -4,7 +4,7 @@
     $db_user=$_ENV['OPENSHIFT_MYSQL_DB_USERNAME']; //Openshift db name OPENSHIFT_MYSQL_DB_USERNAME
     $db_host=$_ENV['OPENSHIFT_MYSQL_DB_HOST']; //Openshift db host OPENSHIFT_MYSQL_DB_HOST
     $db_password=$_ENV['OPENSHIFT_MYSQL_DB_PASSWORD']; //Openshift db password OPENSHIFT_MYSQL_DB_PASSWORD
-    $db_name="tf"; //Openshift db name
+    $db_name="DANIGYM"; //Openshift db name
   } else {
     $db_user="gymadmin"; //my db user
     $db_host="localhost"; //my db host
@@ -12,5 +12,3 @@
     $db_name="danigym"; //my db name
   }
 ?>
-
-localhost", "gymadmin", "vasygym", "danigym

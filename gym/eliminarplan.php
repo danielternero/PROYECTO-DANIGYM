@@ -9,7 +9,7 @@
    
    
     $connection = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
-    
+    $dni=$_GET['id'];
         
     $consulta=$connection->query("select ID_PLAN from plan where plan.FKDNI='".$_GET['id']."';");
      while($obj = $consulta->fetch_object()){
@@ -18,8 +18,8 @@
 
          
      }
-    $connection->query("DELETE FROM conforma WHERE conforma.FKID_PLAN='".$idplan."';");
-    $connection->query("DELETE FROM plan WHERE plan.FKDNI='".$_GET['id']."';");
+    $connection->query("DELETE  FROM conforma WHERE conforma.FKID_PLAN='".$idplan."';");
+    $connection->query("DELETE  FROM plan WHERE plan.FKDNI='".$dni."';");
 
     header("Location: administrador.php");
          

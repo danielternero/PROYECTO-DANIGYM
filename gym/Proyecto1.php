@@ -8,7 +8,7 @@ if(isset($_POST["user"])){
               exit();
           }
           
-          $query = $connection->prepare("SELECT nivel_de_usuario, nombre FROM usuario WHERE nombre=? AND contrasena=md5(?)");
+          $query = $connection->prepare("SELECT nivel_de_usuario, nombre FROM usuario WHERE usuario=? AND contrasena=md5(?)");
           $query->bind_param("ss",$_POST["user"],$_POST["password"]);
           if ($query->execute()) {
               

@@ -64,7 +64,7 @@ if ($_SESSION["nivel"]==1) {
         echo "<tr>";
         echo "<td>".$usuario[$y]."</td>";
         echo "<td><a href='editarusuario.php?id=$dni[$y]'><img class='logoadmin'src='../img/editarusuario.ico'</a></td>";
-        echo "<td><a href='asignarplan.php'><img class='logoadmin'src='../img/asignarplan.png'</a></td>";
+        echo "<td><a href='asignarplan.php?id=$dni[$y]'><img class='logoadmin'src='../img/asignarplan.png'</a></td>";
         echo "<td><a href='eliminarplan.php?id=$dni[$y]'><img class='logoadmin'src='../img/eliminarplan.png'</a></td>";
         echo "<td><a href='borrar.php?id=$dni[$y]'><img class='logoadmin' src='../img/eliminar.jpg'></a></td>";
         echo "</tr>";

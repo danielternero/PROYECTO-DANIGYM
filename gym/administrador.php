@@ -9,7 +9,7 @@ if ($_SESSION["nivel"]==1) {
             header("location: Proyecto1.php");
           } 
             $connection = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
- if ($result = $connection->query("SELECT * FROM usuario where NIVEL_DE_USUARIO=1;")) {
+ if ($result = $connection->query("SELECT * FROM usuario, plan where usuario.DNI=plan.FKDNI and NIVEL_DE_USUARIO=1;")) {
      if ($result->num_rows===0) {
               echo "No hay ningun usuario";
               }
@@ -19,12 +19,14 @@ if ($_SESSION["nivel"]==1) {
             
             $usuario[$y]=$obj->NOMBRE;
             $dni[$y]=$obj->DNI;
-
+			$tipo[$y]=$obj->TIPO;
             $y++;
             
                 }
             }
  }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,6 +60,7 @@ if ($_SESSION["nivel"]==1) {
             <th>ASIGNAR PLAN</th>
             <th>BORRAR PLAN</th>
             <th>ELIMINAR USUARIO</th>
+			<th>PLAN ASIGNADO</th>
         </tr>
 <?php
         for($y=0;$y<sizeof($usuario);$y++){
@@ -67,7 +70,8 @@ if ($_SESSION["nivel"]==1) {
         echo "<td><a href='asignarplan.php?id=$dni[$y]'><img class='logoadmin'src='../img/asignarplan.png'</a></td>";
         echo "<td><a href='eliminarplan.php?id=$dni[$y]'><img class='logoadmin'src='../img/eliminarplan.png'</a></td>";
         echo "<td><a href='borrar.php?id=$dni[$y]'><img class='logoadmin' src='../img/eliminar.jpg'></a></td>";
-        echo "</tr>";
+		echo "<td>".$tipo[$y]."</td>";
+		echo "</tr>";
         }
         ?>
       </table>  

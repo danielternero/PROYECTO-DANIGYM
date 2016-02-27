@@ -28,6 +28,9 @@
       <img  class="logo" src="captura.png"/>
          <h1 class="welcome">CREAR USUARIO</h1>
     </div>
+	  <div class="cuadro2">
+		   	<a href="cerrar.php"><img  class="botonsalir" src="salir.png"/></a>
+	  	</div>
   </div>
   <div id="cuerpo">
 <form method="post">

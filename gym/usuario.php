@@ -27,16 +27,6 @@ if (!isset($_SESSION["user"])) {
                 } else {
                 //THE LOOP CONTINUES WHILE WE HAVE ANY OBJECT (Query Row) LEFT
                  while($obj = $result->fetch_object()) {
-               /* echo "<table>";
-                     echo "<tr><td>NOMBRE: ".$obj->NOMBRE."</td></tr>";
-                      echo "<tr><td>APELLIDOS: ".$obj->APELLIDO."</td></tr>";
-                     echo "<tr><td>FECHA DE INICIO: ".$obj->FECHA_INICIO."</td></tr>";
-                     echo "<tr><td>FECHA FIN: ".$obj->FECHA_FIN."</td></tr>";
-                     echo "<tr><td>PESO INICIO: ".$obj->PESO_INICIO."</td></tr>";
-                     echo "<tr><td>PESO FIN: ".$obj->PESO_FIN."</td></tr>";
-                     echo "<tr><td>TIPO DE PLAN: ".$obj->TIPO."</td></tr>";
-                     echo "<tr><td>DNI: ".$obj->FKDNI."</td></tr>";
-              echo "</table>"; */
                      $datos['nombre']=$obj->NOMBRE;
                      $datos['apellidos']=$obj->APELLIDO;
                      $datos['fechainicio']=$obj->FECHA_INICIO;
@@ -49,13 +39,14 @@ if (!isset($_SESSION["user"])) {
                      $datos['fotousuario']=$obj->IMAGEN_PERSONAL;
                      $datos['edad']=$obj->EDAD;
                      $datos['alta']=$obj->FECHA_ALTA;
-                      $datos['correo']=$obj->CORREO_ELECTRONICO;
+                     $datos['correo']=$obj->CORREO_ELECTRONICO;
                  }
               }
           } else {
             echo "Wrong Query";
             var_dump($result);
           }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,9 +64,7 @@ if (!isset($_SESSION["user"])) {
 
   </head>
 <body>
-<?php
-        
-?>
+
 <div id="contenedor">
   <div id="cabecera">
     <div class="cuadro1">
@@ -89,9 +78,8 @@ echo strtoupper($_SESSION['user']);
         <a href="cerrar.php"><img  class="botoncerrar" src="boton-cerrar-sesion.png"/></a>
     </div>
   </div>
-  <div id="cuerpo">
-
-    <div id="contenidofoto"><img id="fotousuario" src="<?php echo $datos['fotousuario'];?>" ></div> 
+  <div id="cuerpo"> 
+    <div id="contenidofoto"><img id="fotousuario" src="data:image/jpg;base64,<?php echo base64_encode($datos['fotousuario']);?>" ></div> 
       <div id="contenidodatos">
           <p><span class="subrayado">DATOS PERSONALES:</span></p>
           <p>NOMBRE Y APELLIDOS: <?php echo $datos['nombre']." ".$datos['apellidos'];?></p>

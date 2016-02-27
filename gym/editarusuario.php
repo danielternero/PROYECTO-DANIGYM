@@ -1,3 +1,13 @@
+<?php
+if ($_SESSION["nivel"]==1) {
+             header("location: Proyecto1.php");
+          } 
+ if (!isset($_SESSION["nivel"])) {
+            
+            header("location: Proyecto1.php");
+          } 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -29,11 +39,14 @@
             $usuario=$obj->USUARIO;
             $correo=$obj->CORREO_ELECTRONICO;
             $contrasena=$obj->CONTRASENA;
+			
      }
 if (isset($_POST['NOMBRE'])){
-$connection->query("UPDATE usuario SET  NOMBRE = '".$_POST['NOMBRE']."', APELLIDO = '".$_POST['APELLIDO']."', FECHA_ALTA = '".$_POST['FECHA_ALTA']."', EDAD ='".$_POST['EDAD']."', ENFERMEDAD = '".$_POST['ENFERMEDAD']."', USUARIO = '".$_POST['USUARIO']."', CORREO_ELECTRONICO ='".$_POST['CORREO_ELECTRONICO']."', CONTRASENA = '".md5($_POST['CONTRASENA'])."' WHERE usuario.DNI ='".$_GET['id']."';");
+$imagen = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
+$connection->query("UPDATE usuario SET  NOMBRE = '".$_POST['NOMBRE']."', APELLIDO = '".$_POST['APELLIDO']."', FECHA_ALTA = '".$_POST['FECHA_ALTA']."', EDAD ='".$_POST['EDAD']."', ENFERMEDAD = '".$_POST['ENFERMEDAD']."', USUARIO = '".$_POST['USUARIO']."', CORREO_ELECTRONICO ='".$_POST['CORREO_ELECTRONICO']."', CONTRASENA = '".md5($_POST['CONTRASENA'])."',IMAGEN_PERSONAL = '".$imagen."' WHERE usuario.DNI ='".$_GET['id']."';");
 
-header('Location: administrador.php');
+//header('Location: administrador.php');
+
 }
 
     ?>
@@ -44,9 +57,12 @@ header('Location: administrador.php');
       <img  class="logo" src="captura.png"/>
          <h1 class="welcome">EDITAR USUARIO</h1>
     </div>
+	  	<div class="cuadro2">
+		   	<a href="cerrar2.php"><img  class="botonsalir" src="salir.png"/></a>
+	  	</div>
   </div>
   <div id="cuerpo">
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <fieldset class="formulario">
         <legend><span class="subrayado">EDITAR USUARIO </span></legend></br>
     
@@ -72,8 +88,8 @@ header('Location: administrador.php');
     
     Contraseña:
     <input type="password" name="CONTRASENA" required /></br></br>
-    Imagen personal (url):
-    <input type="text" name="IMAGEN_PERSONAL"/></br></br>
+    Imagen personal:
+    <input type="file" name="imagen" required/></br></br>
 
 <input type="submit" value="Cambiar" />
     </fieldset>

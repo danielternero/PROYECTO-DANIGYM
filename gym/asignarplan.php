@@ -1,3 +1,15 @@
+<?php
+if ($_SESSION["nivel"]==1) {
+            
+            header("location: Proyecto1.php");
+          } 
+
+ if (!isset($_SESSION["nivel"])) {
+            
+            header("location: Proyecto1.php");
+          } 
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,7 +25,7 @@
 <body>
 
 <?php
- 
+ 		
       $connection = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
       $consulta=$connection->query("select * from usuario where usuario.DNI='".$_GET['id']."';");
      while($obj = $consulta->fetch_object()){
@@ -44,17 +56,20 @@ $insert2="INSERT INTO `conforma` (`FKID_PLAN`, `FKID_EJERCICIO`, `REPETICIONES`,
 $connection->query( $insert );
 $connection->query( $insert2 );
 
-header('Location: Proyecto1.php');
+header('Location: administrador.php');
 }
 
     ?>
 
 <div id="contenedor">
   <div id="cabecera">
-    <div class="cuadro1">
-      <img  class="logo" src="captura.png"/>
-         <h1 class="welcome">EDITAR USUARIO</h1>
-    </div>
+    	<div class="cuadro1">
+      		<img  class="logo" src="captura.png"/>
+         	<h1 class="welcome">ASIGNAR PLAN</h1>
+		</div>
+	  	<div class="cuadro2">
+		   	<a href="cerrar2.php"><img  class="botonsalir" src="salir.png"/></a>
+	  	</div>
   </div>
   <div id="cuerpo">
 <form method="post">

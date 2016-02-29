@@ -52,7 +52,7 @@ header('Location: administrador.php');
 <div id="contenedor">
   <div id="cabecera">
     	<div class="cuadro1">
-      		<img  class="logo" src="captura.png"/>
+      		<img  class="logo" src="Captura.png"/>
          	<h1 class="welcome">ASIGNAR PLAN</h1>
 		</div>
 	  	<div class="cuadro2">

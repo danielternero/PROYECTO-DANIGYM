@@ -10,7 +10,7 @@ if ($_SESSION["nivel"]==1) {
             header("location: Proyecto1.php");
           } 
             $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
- if ($result = $connection->query("SELECT * FROM plan RIGHT JOIN usuario ON plan.FKDNI=usuario.DNI and NIVEL_DE_USUARIO=1;")) {
+ if ($result = $connection->query("SELECT * FROM plan RIGHT JOIN usuario ON plan.FKDNI=usuario.DNI where NIVEL_DE_USUARIO=1;")) {
      if ($result->num_rows===0) {
               echo "No hay ningun usuario";
               }
@@ -53,7 +53,7 @@ if ($_SESSION["nivel"]==1) {
 <div id="contenedor">
   <div id="cabecera">
     <div class="cuadro1">
-      <img  class="logo" src="captura.png"/>
+      <img  class="logo" src="Captura.png"/>
          <h1 id="tituloadmin" class="welcome">ZONA DE ADMINISTRACION</h1>
          </div>
       <div class="cuadro2">
@@ -73,7 +73,8 @@ if ($_SESSION["nivel"]==1) {
 			<th>ASIGNAR EJERCICIOS</th>
         </tr>
 <?php
-        for($y=0;$y<sizeof($usuario);$y++){
+        if (isset($usuario)){
+		for($y=0;$y<sizeof($usuario);$y++){
         echo "<tr>";
         echo "<td>".$usuario[$y]."</td>";
         echo "<td><a href='editarusuario.php?id=$dni[$y]'><img class='logoadmin'src='../img/editarusuario.ico'</a></td>";
@@ -84,6 +85,7 @@ if ($_SESSION["nivel"]==1) {
 		echo "<td>".$idplan[$y]."</td>";
 		echo "</tr>";
         }
+						   }
         ?>
       </table>  
 		  </div>

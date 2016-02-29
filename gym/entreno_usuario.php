@@ -54,7 +54,7 @@ if (!isset($_SESSION["user"])) {
 <div id="contenedor">
   <div id="cabecera">
     <div class="cuadro1">
-      <img  class="logo" src="captura.png"/>
+      <img  class="logo" src="Captura.png"/>
       <h1 class="welcomeentreno">ENTRENAMIENTO DE <?php echo strtoupper($_SESSION['user']);
 ?>
 </h1>

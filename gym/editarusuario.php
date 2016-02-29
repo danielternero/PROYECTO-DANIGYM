@@ -1,10 +1,8 @@
 <?php
-if ($_SESSION["nivel"]==1) {
-             header("location: Proyecto1.php");
-          } 
- if (!isset($_SESSION["nivel"])) {
-            
-            header("location: Proyecto1.php");
+include_once("./configuraciondb.php");
+ session_start();
+if ($_SESSION['nivel']==1) {
+             header('location: Proyecto1.php');
           } 
 ?>
 
@@ -24,7 +22,7 @@ if ($_SESSION["nivel"]==1) {
 
 <?php
  
-      $connection = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
+      $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
       $consulta=$connection->query("select * from usuario where usuario.DNI='".$_GET['id']."';");
      
     while($obj = $consulta->fetch_object()){
@@ -45,8 +43,7 @@ if (isset($_POST['NOMBRE'])){
 $imagen = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
 $connection->query("UPDATE usuario SET  NOMBRE = '".$_POST['NOMBRE']."', APELLIDO = '".$_POST['APELLIDO']."', FECHA_ALTA = '".$_POST['FECHA_ALTA']."', EDAD ='".$_POST['EDAD']."', ENFERMEDAD = '".$_POST['ENFERMEDAD']."', USUARIO = '".$_POST['USUARIO']."', CORREO_ELECTRONICO ='".$_POST['CORREO_ELECTRONICO']."', CONTRASENA = '".md5($_POST['CONTRASENA'])."',IMAGEN_PERSONAL = '".$imagen."' WHERE usuario.DNI ='".$_GET['id']."';");
 
-//header('Location: administrador.php');
-
+header('Location: administrador.php');
 }
 
     ?>
@@ -88,7 +85,7 @@ $connection->query("UPDATE usuario SET  NOMBRE = '".$_POST['NOMBRE']."', APELLID
     
     Contraseña:
     <input type="password" name="CONTRASENA" required /></br></br>
-    Imagen personal:
+    Imagen personal:(Max 1MB)
     <input type="file" name="imagen" required/></br></br>
 
 <input type="submit" value="Cambiar" />

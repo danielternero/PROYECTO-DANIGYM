@@ -1,3 +1,6 @@
+<?php
+include_once("./configuraciondb.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,7 +11,7 @@
 <?php
    
    
-    $connection = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
+    $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
     $dni=$_GET['id'];
         
     $consulta=$connection->query("select ID_PLAN from plan where plan.FKDNI='".$_GET['id']."';");

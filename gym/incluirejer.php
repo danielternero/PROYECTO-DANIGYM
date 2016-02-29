@@ -1,5 +1,8 @@
 <?php
 include_once("./configuraciondb.php");
+if (isset($_SESSION['id'])){
+unset($_SESSION['id']);						  
+}
  session_start();
 if ($_SESSION["nivel"]==1) {
             
@@ -21,42 +24,25 @@ if ($_SESSION["nivel"]==1) {
 <body>
 
 <?php
- 		
-      $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
-	if ($comparacion=$connection->query("select * from plan where FKDNI='".$_GET['id']."';")){
-  if ($comparacion->num_rows!=0){
-  echo "<h1>ya tiene asignado un plan</h1>";
-	  header('Refresh:2; url=administrador.php');
-  }
-}
-      $consulta=$connection->query("select * from usuario where usuario.DNI='".$_GET['id']."';");
-     while($obj = $consulta->fetch_object()){
-	 
-	 $dni=$obj->DNI;
-	
-	 }
 
-if (isset($_POST['ID_PLAN'])){
+	$connection = new mysqli($db_host, $db_user, $db_password, $db_name);
+ 	$_SESSION['id']=$_GET['id'];
+
+if (isset($_POST['EJERCICIO'])){
 		
-		$idplan=$_POST["ID_PLAN"];
-        $fechaini=$_POST["FECHA_INICIO"];
-        $fechafin=$_POST["FECHA_FIN"];
-        $pesoini=$_POST["PESO_INICIO"];
-        $pesofin=$_POST["PESO_FIN"];
-        $tipo=$_POST["TIPO"];
+     	$tipo=$_POST["TIPO"];
         $ejercicios=$_POST["EJERCICIO"];
         $repeticiones=$_POST["REPETICIONES"];
         $tiempo=$_POST["TIEMPO_ESTIMADO"];
         $series=$_POST["SERIES"];
         $diasemana=$_POST["DIA_SEMANA"];
-   
+  
 
-$insert="INSERT INTO plan (`ID_PLAN`, `FECHA_INICIO`, `FECHA_FIN`, `PESO_INICIO`, `PESO_FIN`, `TIPO`, `FKDNI`) VALUES ('$idplan', '$fechaini', '$fechafin', '$pesoini', '$pesofin', '$tipo', '$dni')";
 
-$insert2="INSERT INTO `conforma` (`FKID_PLAN`, `FKID_EJERCICIO`, `REPETICIONES`, `TIEMPO_ESTIMADO`, `SERIES`, `DIA_SEMANA`) VALUES ('$idplan', '$ejercicios', '$repeticiones', '$tiempo', '$series', '$diasemana')";
+$insert2="INSERT INTO `conforma` (`FKID_PLAN`, `FKID_EJERCICIO`, `REPETICIONES`, `TIEMPO_ESTIMADO`, `SERIES`, `DIA_SEMANA`) VALUES ('".$_SESSION['id']."', '$ejercicios', '$repeticiones', '$tiempo', '$series', '$diasemana')";
 
-$connection->query( $insert );
 $connection->query( $insert2 );
+
 
 header('Location: administrador.php');
 }
@@ -77,21 +63,7 @@ header('Location: administrador.php');
 <form method="post">
     
     <fieldset class="formulario">
-    <legend ><span class="subrayado">ASIGNAR PLAN</span></legend></br>
-    ID_PLAN:
-    <input type="text" name="ID_PLAN"/></br></br>
-    FECHA INICIO:
-    <input type="date" name="FECHA_INICIO"/></br></br>
-    FECHA FIN:
-    <input type="date" name="FECHA_FIN"/></br></br>
-    PESO INICIO:
-    <input type="text" name="PESO_INICIO"/></br></br>
-    PESO FIN:
-    <input type="text" name="PESO_FIN"/></br></br>
-    TIPO:
-    <input type="text" name="TIPO"/></br></br>
-    </fieldset>
-    <fieldset class="formulario"></br>
+		<legend><span class="subrayado">INCLUIR EJERCICIOS</span></legend>
     EJERCICIO:<?php
     echo "<select name='EJERCICIO'>";
 	
@@ -110,6 +82,7 @@ header('Location: administrador.php');
     DIA DE LA SEMANA:
     <input type="text" name="DIA_SEMANA"/></br></br>
     <input type="submit" value="enviar" />
+	
     </fieldset>
     
 </form>

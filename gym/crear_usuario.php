@@ -1,3 +1,6 @@
+<?php
+include_once("./configuraciondb.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,12 +17,28 @@
 
 <?php
     
-      if (!isset($_POST["DNI"])) :
-      $connection = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
-      if ($connection->connect_errno) {
-          printf("Connection failed: %s\n", $mysqli->connect_error);
-          exit();
-      }
+      if (isset($_POST['DNI'])){
+		$connection = new mysqli($db_host, $db_user, $db_password, $db_name);
+		
+		$dni=$_POST["DNI"];
+        $nombre=$_POST["NOMBRE"];
+        $apellido=$_POST["APELLIDO"];
+        $edad=$_POST["EDAD"];
+        $peso=$_POST["PESO"];
+        $enfermedad=$_POST["ENFERMEDAD"];
+        $correo_electronico=$_POST["CORREO_ELECTRONICO"];
+        $usuario=$_POST["USUARIO"];
+        $contrasena=md5($_POST["CONTRASENA"]);
+        $imagen=$_POST["img"];
+		$imagen = addslashes(file_get_contents($_FILES['img']['tmp_name']));
+        $insert="INSERT INTO usuario VALUES ('$dni', '$nombre', '$apellido','current_date()', $edad, $peso, '$enfermedad','$usuario', '$correo_electronico', '$contrasena',1, '$imagen')";
+		
+        $connection->query( $insert );
+
+$connection->query( "UPDATE usuario set FECHA_ALTA=current_date() where DNI='$dni';");
+    header('Location: Proyecto1.php');
+
+	}
 ?>   
 
 <div id="contenedor">
@@ -33,7 +52,7 @@
 	  	</div>
   </div>
   <div id="cuerpo">
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <fieldset class="formulario">
         <legend><span class="subrayado">DATOS PERSONALES </span></legend></br>
     Dni:
@@ -59,8 +78,8 @@
     
     Contraseña:
     <input type="password" name="CONTRASENA" required /></br></br>
-    Imagen personal (url):
-    <input type="text" name="IMAGEN_PERSONAL"  /></br></br>
+    Imagen personal:(Max 1MB)
+    <input type="file" name="img" required/></br></br>
 <input type="submit" value="Crear" />
     </fieldset>
     
@@ -70,30 +89,5 @@
   <div id="pie">
 
 </div>
-     <?php  else: ?>
-        <?php
-        $connection = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
-        $dni=$_POST["DNI"];
-        $nombre=$_POST["NOMBRE"];
-        $apellido=$_POST["APELLIDO"];
-        $edad=$_POST["EDAD"];
-        $peso=$_POST["PESO"];
-        $enfermedad=$_POST["ENFERMEDAD"];
-        $correo_electronico=$_POST["CORREO_ELECTRONICO"];
-        $usuario=$_POST["USUARIO"];
-        
-        $contrasena=md5($_POST["CONTRASENA"]);
-        var_dump($_POST);
-        $img=$_POST["IMAGEN_PERSONAL"];
-        $insert="INSERT INTO usuario VALUES ('$dni', '$nombre', '$apellido','current_date()', $edad, $peso, '$enfermedad','$usuario', '$correo_electronico', '$contrasena',1, '$img')";
-//    var_dump($insert);
-        
-        $connection->query( $insert );
-$connection->query( "UPDATE usuario set FECHA_ALTA=current_date() where DNI='$dni';");
-    header('Location: Proyecto1.php');
-   ?>
-
-        <?php endif ?>
-    
 </body>
 </html>

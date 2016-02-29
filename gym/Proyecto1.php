@@ -38,7 +38,6 @@ if(isset($_POST["user"])){
              
 }
             
-
 /*-------------------------2º consulta ------------------------------------------------------*/
 $connection2 = new mysqli($db_host, $db_user, $db_password, $db_name);
         if ($result2 = $connection2->query("SELECT * FROM instalaciones;")) {
@@ -110,9 +109,7 @@ $connection3 = new mysqli($db_host, $db_user, $db_password, $db_name);
       });
   });
         
-  
-     
-/* -------------------------AQUI VA EL SCRIPT DEL CARRUSEL DEPORRRTIVOOOO ------------------ */
+ /* -------------------------AQUI VA EL SCRIPT DEL CARRUSEL  ------------------ */
          var jssor_1_SlideoTransitions = [
               [{b:0,d:600,y:-290,e:{y:27}}],
               [{b:0,d:1000,y:185},{b:1000,d:500,o:-1},{b:1500,d:500,o:1},{b:2000,d:1500,r:360},{b:3500,d:1000,rX:30},{b:4500,d:500,rX:-30},{b:5000,d:1000,rY:30},{b:6000,d:500,rY:-30},{b:6500,d:500,sX:1},{b:7000,d:500,sX:-1},{b:7500,d:500,sY:1},{b:8000,d:500,sY:-1},{b:8500,d:500,kX:30},{b:9000,d:500,kX:-30},{b:9500,d:500,kY:30},{b:10000,d:500,kY:-30},{b:10500,d:500,c:{x:87.50,t:-87.50}},{b:11000,d:500,c:{x:-87.50,t:87.50}}],
@@ -233,7 +230,7 @@ $connection3 = new mysqli($db_host, $db_user, $db_password, $db_name);
 <span data-u="arrowright" class="jssora02r" style="right:8px;width:55px;height:55px;margin-left: 380px;margin-top:50px;" data-autocenter="2"><img src="../img/derecha.png"></span>
 </div>
 </div>
-<!-- -------------------------AQUI ACABA EL CARRUSEL ----------------------------- -->
+<!---------------------------AQUI ACABA EL CARRUSEL ------------------------------->
 </div>
  <div id="dialog" title="INICIAR SESIÓN" style="display:none">
   <form action="Proyecto1.php" method="post" class="login">

@@ -63,6 +63,7 @@ height: 455px;
 float: left;
 margin-left: 2.5%;
 background-color:#E0E0E0;
+
 }
 
 
@@ -137,11 +138,17 @@ margin-top: -50px;
 
 /*-----------------------------TABLA-------------------*/
 
-td, th { border: 1px solid transparent; height: 30px; }
+.espacio{
+	overflow: scroll;
+	height: 100%;
+	width: 100%;
+}
+td, th {border: 1px solid transparent; height: 30px; }
 th { background: #D3D3D3; font-weight: bold; width:10%; }
 td { background: #FAFAFA; text-align: center; width:10%; }
 tr:nth-child(even) td { background: #F1F1F1; }  
 tr:nth-child(odd) td { background: #FEFEFE; } 
+
 
 .logovideo{
 width: 50px;

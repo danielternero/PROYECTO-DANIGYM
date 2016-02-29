@@ -1,9 +1,10 @@
 <?php
+include_once("./configuraciondb.php");
   session_start();
 if (!isset($_SESSION["user"])) {
           header("location: Proyecto1.php");
           }
-            $connection = new mysqli("localhost", "gymadmin", "vasygym", "danigym");
+            $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
         if ($result = $connection->query("SELECT * FROM plan join usuario on plan.FKDNI=usuario.DNI  WHERE                  nombre='".$_SESSION['user']."';")) {
               if ($result->num_rows===0) {
                 if ($result2 = $connection->query("SELECT * FROM usuario WHERE nombre='".$_SESSION['user']."';")) {

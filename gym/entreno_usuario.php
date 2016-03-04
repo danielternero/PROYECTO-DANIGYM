@@ -9,7 +9,6 @@ if (!isset($_SESSION["user"])) {
               if ($result->num_rows===0) {
                 echo "NO TIENE PLAN ASIGNADO";
               } else {
-                //THE LOOP CONTINUES WHILE WE HAVE ANY OBJECT (Query Row) LEFT
                $i=0;
                   
                   while($obj = $result->fetch_object()) {

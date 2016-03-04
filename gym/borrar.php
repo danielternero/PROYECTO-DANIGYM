@@ -15,7 +15,7 @@
     $connection->query("DELETE FROM usuario WHERE usuario.DNI='".$_GET['id']."';");
    
      
-        header("Location: administrador.php");
+        header("Location: adminusuario.php");
          
           unset($obj);
           unset($connection);

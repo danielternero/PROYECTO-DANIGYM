@@ -23,27 +23,25 @@ if ($_SESSION['nivel']==1) {
 <?php
  
       $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
-      $consulta=$connection->query("select * from usuario where usuario.DNI='".$_GET['id']."';");
+      $consulta=$connection->query("select * from ejercicios,instalaciones where ejercicios.FKID_INSTALACION=instalaciones.ID_INSTALACION and ejercicios.ID_EJERCICIO='".$_GET['id']."';");
      
     while($obj = $consulta->fetch_object()){
             
             
-            $nombre=$obj->NOMBRE;
-            $apellido=$obj->APELLIDO;
-            $fechalta=$obj->FECHA_ALTA;
-            $edad=$obj->EDAD;
-            $peso=$obj->PESO;
-            $enfermedad=$obj->ENFERMEDAD;
-            $usuario=$obj->USUARIO;
-            $correo=$obj->CORREO_ELECTRONICO;
-            $contrasena=$obj->CONTRASENA;
+            $idejer=$obj->ID_EJERCICIO;
+            $nombre=$obj->NOMBRE_EJER;
+            $clasificacion=$obj->CLASIFICACION;
+            $maquina=$obj->REQUIERE_MAQUINA;
+            $sala=$obj->SALA;
+            $enlace=$obj->ENLACE;
+			
 			
      }
 if (isset($_POST['NOMBRE'])){
 $imagen = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
 $connection->query("UPDATE usuario SET  NOMBRE = '".$_POST['NOMBRE']."', APELLIDO = '".$_POST['APELLIDO']."', FECHA_ALTA = '".$_POST['FECHA_ALTA']."', EDAD ='".$_POST['EDAD']."', ENFERMEDAD = '".$_POST['ENFERMEDAD']."', USUARIO = '".$_POST['USUARIO']."', CORREO_ELECTRONICO ='".$_POST['CORREO_ELECTRONICO']."', CONTRASENA = '".md5($_POST['CONTRASENA'])."',IMAGEN_PERSONAL = '".$imagen."' WHERE usuario.DNI ='".$_GET['id']."';");
 
-header('Location: adminusuario.php');
+header('Location: administrador.php');
 }
 
     ?>
@@ -55,39 +53,26 @@ header('Location: adminusuario.php');
          <h1 class="welcome">EDITAR USUARIO</h1>
     </div>
 	  	<div class="cuadro2">
-		   	<a href="adminusuario.php"><img  class="botonsalir" src="salir.png"/></a>
+		   	<a href="cerrar2.php"><img  class="botonsalir" src="salir.png"/></a>
 	  	</div>
   </div>
   <div id="cuerpo">
 <form method="post" enctype="multipart/form-data">
     <fieldset class="formulario">
-        <legend><span class="subrayado">EDITAR USUARIO </span></legend></br>
+        <legend><span class="subrayado">EDITAR EJERCICIOS </span></legend></br>
     
-    Nombre:                     
-  <input type="text" name="NOMBRE" required value="<?php echo $nombre; ?>"/></br></br>
-    Apellidos:
-    <input type="text" name="APELLIDO" required value="<?php echo $apellido; ?>"/></br></br>
-    fecha alta:
-    <input type="date" name="FECHA_ALTA" required value="<?php echo $fechalta; ?>"/></br></br>
-    Edad:
-    <input type="number" name="EDAD" required value="<?php echo $edad; ?>"/></br></br>
-    Peso:   
-    <input type="number" name="PESO" required value="<?php echo $peso; ?>"/>(Kg)</br></br>
-    Enfermedad:
-    <textarea  name="ENFERMEDAD" placeholder="Indique si padece alguna enfermedad" value="<?php echo $enfermedad; ?>"/></textarea></br></br>
-    Correo electronico:
-    <input type="email" name="CORREO_ELECTRONICO" required value="<?php echo $correo; ?>"/></br></br>
-    </fieldset>
-    <fieldset class="formulario">
-    <legend ><span class="subrayado">DATOS DE USUARIO </span></legend></br>
-    Nombre de usuario:
-    <input type="text" name="USUARIO" required value="<?php echo $usuario; ?>"/></br></br>
-    
-    Contraseña:
-    <input type="password" name="CONTRASENA" required /></br></br>
-    Imagen personal:(Max 1MB)
-    <input type="file" name="imagen" required/></br></br>
-
+    Id ejercicio:                     
+  <input type="text" name="ID_EJERCICIO" required value="<?php echo $idejer; ?>"/></br></br>
+    Nombre:
+    <input type="text" name="NOMBRE_EJER" required value="<?php echo $nombre; ?>"/></br></br>
+    Clasificacion:
+    <input type="text" name="CLASIFICACION" required value="<?php echo $clasificacion; ?>"/></br></br>
+    Requiere Maquina:
+    <input type="text" name="REQUIERE_MAQUINA" required value="<?php echo $maquina; ?>"/></br></br>
+    Instalacion:   
+    <input type="text" name="SALA" required value="<?php echo $sala; ?>"/></br></br>
+    Video:
+    <input  name="ENlACE"  value="<?php echo $enlace; ?>"/></br></br>
 <input type="submit" value="Cambiar" />
     </fieldset>
 </form>

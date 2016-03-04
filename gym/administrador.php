@@ -9,31 +9,7 @@ if ($_SESSION["nivel"]==1) {
             
             header("location: Proyecto1.php");
           } 
-            $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
- if ($result = $connection->query("SELECT * FROM plan RIGHT JOIN usuario ON plan.FKDNI=usuario.DNI where NIVEL_DE_USUARIO=1;")) {
-     if ($result->num_rows===0) {
-              echo "No hay ningun usuario";
-              }
-            else {
-            $y=0;
-            while($obj = $result->fetch_object()){
-   			
-            $usuario[$y]=$obj->NOMBRE;
-            $dni[$y]=$obj->DNI;
-			if($obj->TIPO!=null){
-			$tipo[$y]=$obj->TIPO;
-			$idplan[$y]="<a href='incluirejer.php?id=$obj->ID_PLAN'><img class='logoadmin' src='../img/ejercicio.png'></a>";
-}
-			else{
-			$tipo[$y]="No tiene plan";
-			$idplan[$y]="<p>No se pueden poner ejercicios si no tiene plan</p>";
-			}
-            $y++;
-            
-                }
-            }
- }
-
+           
 
 ?>
 <!DOCTYPE html>
@@ -61,34 +37,13 @@ if ($_SESSION["nivel"]==1) {
     </div>
   </div>
   <div id="cuerpo">
-	  <div class="espacio">
-        <table>  
-        <tr>
-            <th>USUARIOS</th>
-            <th>EDITAR USUARIO</th>
-            <th>ASIGNAR PLAN</th>
-            <th>BORRAR PLAN</th>
-            <th>ELIMINAR USUARIO</th>
-			<th>PLAN ASIGNADO</th>
-			<th>ASIGNAR EJERCICIOS</th>
-        </tr>
-<?php
-        if (isset($usuario)){
-		for($y=0;$y<sizeof($usuario);$y++){
-        echo "<tr>";
-        echo "<td>".$usuario[$y]."</td>";
-        echo "<td><a href='editarusuario.php?id=$dni[$y]'><img class='logoadmin'src='../img/editarusuario.ico'</a></td>";
-        echo "<td><a href='asignarplan.php?id=$dni[$y]'><img class='logoadmin'src='../img/asignarplan.png'</a></td>";
-        echo "<td><a href='eliminarplan.php?id=$dni[$y]'><img class='logoadmin'src='../img/eliminarplan.png'</a></td>";
-        echo "<td><a href='borrar.php?id=$dni[$y]'><img class='logoadmin' src='../img/eliminar.jpg'></a></td>";
-		echo "<td>".$tipo[$y]."</td>";
-		echo "<td>".$idplan[$y]."</td>";
-		echo "</tr>";
-        }
-						   }
-        ?>
-      </table>  
-		  </div>
+	  
+<div class="arriba"><p>USUARIOS</p><a href='adminusuario.php'><img class='logoadmin2'src='../img/usu.jpg'></a></div> 
+<div class="debajo"><p>PLANES</p><a href='adminplan.php'><img class='logoadmin2'src='../img/editarplan.ico'></a></div>		
+<div class="arriba"><p>EJERCICIOS</p><a href='adminejercicio.php'><img class='logoadmin2' src='../img/ejercicio.png'></a></div>
+<div class="debajo"><p>INSTALACION</p><a href='admininstalacion.php'><img class='logoadmin2' src='../img/instalacion.png'></a></div>
+
+		 
     </div>
   <div id="pie">
 

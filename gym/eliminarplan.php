@@ -24,7 +24,7 @@ include_once("./configuraciondb.php");
     $connection->query("DELETE  FROM conforma WHERE conforma.FKID_PLAN='".$idplan."';");
     $connection->query("DELETE  FROM plan WHERE plan.FKDNI='".$dni."';");
 
-    header("Location: administrador.php");
+    header("Location: adminplan.php");
          
           unset($obj);
           unset($connection);

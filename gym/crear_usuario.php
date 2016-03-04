@@ -48,7 +48,7 @@ $connection->query( "UPDATE usuario set FECHA_ALTA=current_date() where DNI='$dn
          <h1 class="welcome">CREAR USUARIO</h1>
     </div>
 	  <div class="cuadro2">
-		   	<a href="cerrar.php"><img  class="botonsalir" src="salir.png"/></a>
+		   	<a href="adminusuario.php"><img  class="botonsalir" src="salir.png"/></a>
 	  	</div>
   </div>
   <div id="cuerpo">

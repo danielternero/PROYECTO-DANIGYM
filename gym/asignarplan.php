@@ -33,12 +33,16 @@ if ($_SESSION["nivel"]==1) {
      while($obj = $consulta->fetch_object()){
 	 
 	 $dni=$obj->DNI;
-	
-	 }
+}
 
-if (isset($_POST['ID_PLAN'])){
+ $consulta2=$connection->query("SELECT ID_PLAN from PLAN ORDER by ID_PLAN DESC LIMIT 1");
+     while($obj = $consulta2->fetch_object()){
+	 
+	 $idplan=$obj->ID_PLAN;
+	$idplan=$idplan+1;
+	 }
+if (isset($_POST['FECHA_INICIO'])){
 		
-		$idplan=$_POST["ID_PLAN"];
         $fechaini=$_POST["FECHA_INICIO"];
         $fechafin=$_POST["FECHA_FIN"];
         $pesoini=$_POST["PESO_INICIO"];
@@ -58,7 +62,7 @@ $insert2="INSERT INTO `conforma` (`FKID_PLAN`, `FKID_EJERCICIO`, `REPETICIONES`,
 $connection->query( $insert );
 $connection->query( $insert2 );
 
-header('Location: administrador.php');
+header('Location: adminplan.php');
 }
 
     ?>
@@ -70,7 +74,7 @@ header('Location: administrador.php');
          	<h1 class="welcome">ASIGNAR PLAN</h1>
 		</div>
 	  	<div class="cuadro2">
-		   	<a href="cerrar2.php"><img  class="botonsalir" src="salir.png"/></a>
+		   	<a href="adminplan.php"><img  class="botonsalir" src="salir.png"/></a>
 	  	</div>
   </div>
   <div id="cuerpo">
@@ -78,8 +82,6 @@ header('Location: administrador.php');
     
     <fieldset class="formulario">
     <legend ><span class="subrayado">ASIGNAR PLAN</span></legend></br>
-    ID_PLAN:
-    <input type="text" name="ID_PLAN"/></br></br>
     FECHA INICIO:
     <input type="date" name="FECHA_INICIO"/></br></br>
     FECHA FIN:

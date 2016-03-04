@@ -30,7 +30,7 @@ if ($_SESSION["nivel"]==1) {
 
 if (isset($_POST['EJERCICIO'])){
 		
-     	$tipo=$_POST["TIPO"];
+     	
         $ejercicios=$_POST["EJERCICIO"];
         $repeticiones=$_POST["REPETICIONES"];
         $tiempo=$_POST["TIEMPO_ESTIMADO"];
@@ -43,8 +43,7 @@ $insert2="INSERT INTO `conforma` (`FKID_PLAN`, `FKID_EJERCICIO`, `REPETICIONES`,
 
 $connection->query( $insert2 );
 
-
-header('Location: administrador.php');
+header('Location: adminplan.php');
 }
 
     ?>
@@ -56,7 +55,7 @@ header('Location: administrador.php');
          	<h1 class="welcome">ASIGNAR PLAN</h1>
 		</div>
 	  	<div class="cuadro2">
-		   	<a href="cerrar2.php"><img  class="botonsalir" src="salir.png"/></a>
+		   	<a href="adminplan.php"><img  class="botonsalir" src="salir.png"/></a>
 	  	</div>
   </div>
   <div id="cuerpo">
@@ -68,7 +67,7 @@ header('Location: administrador.php');
     echo "<select name='EJERCICIO'>";
 	
 	$consulta2=$connection->query("select * from ejercicios;");
-	  while($obj2 = $consulta2->fetch_object()){
+	while($obj2 = $consulta2->fetch_object()){
 	echo "<option value='".$obj2->ID_EJERCICIO."'>".$obj2->NOMBRE_EJER."</option>"; 
 	}
 	echo "</select></br></br>";

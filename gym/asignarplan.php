@@ -23,17 +23,15 @@ if ($_SESSION["nivel"]==1) {
     <link href='https://fonts.googleapis.com/css?family=Raleway:500,600' rel='stylesheet' type='text/css'>
 </head>
 <body>
-
 <?php
- 		
-      $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
+ 	  $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
       $consulta=$connection->query("select * from usuario where usuario.DNI='".$_GET['id']."';");
      while($obj = $consulta->fetch_object()){
 	 
 	 $dni=$obj->DNI;
 }
 //PARA QUE EL ID PLAN SE PONGA AUTOMATICAMENTE EL SIGUIENTE
- $consulta2=$connection->query("SELECT ID_PLAN from PLAN ORDER by ID_PLAN DESC LIMIT 1");
+ $consulta2=$connection->query("select ID_PLAN from plan order by ID_PLAN DESC LIMIT 1");
      while($obj = $consulta2->fetch_object()){
 	 
 	 $idplan=$obj->ID_PLAN;

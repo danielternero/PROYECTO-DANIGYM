@@ -56,7 +56,7 @@ if ($_SESSION["nivel"]==1) {
   <div id="cabecera">
     <div class="cuadro1">
       <img  class="logo" src="Captura.png"/>
-         <h1 class="welcome">CREAR EJERCICIO</h1>
+         <h1 class="welcome">CREAR INSTALACION</h1>
     </div>
 	  <div class="cuadro2">
 		   	<a href="admininstalacion.php"><img  class="botonsalir" src="salir.png"/></a>
@@ -65,7 +65,7 @@ if ($_SESSION["nivel"]==1) {
   <div id="cuerpo">
 <form method="post" enctype="multipart/form-data">
     <fieldset class="formulario">
-        <legend><span class="subrayado">EJERCICIOS</span></legend></br>
+        <legend><span class="subrayado">INSTALACION</span></legend></br>
     Sala:                     
   <input type="text" name="SALA" required /></br></br>
     Planta:

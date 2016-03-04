@@ -10,6 +10,9 @@ if ($_SESSION["nivel"]==1) {
             header("location: Proyecto1.php");
           } 
             $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
+
+//SACA TODOS LOS USUARIOS TENGA O NO TENGAN PLAN Y QUE NIVEL DE USUARIO 1
+
  if ($result = $connection->query("SELECT * FROM plan RIGHT JOIN usuario ON plan.FKDNI=usuario.DNI where NIVEL_DE_USUARIO=1;")) {
      if ($result->num_rows===0) {
               echo "No hay ningun usuario";
@@ -20,14 +23,26 @@ if ($_SESSION["nivel"]==1) {
    			
             $usuario[$y]=$obj->NOMBRE;
             $dni[$y]=$obj->DNI;
+				
+			//No es nulo quere decir que tiene plan.
+				
 			if($obj->TIPO!=null){
 			$tipo[$y]=$obj->TIPO;
 			$idplan[$y]="<a href='incluirejer.php?id=$obj->ID_PLAN'><img class='logoadmin' src='../img/ejercicio.png'></a>";
 			$planid[$y]=$obj->ID_PLAN;
+			$borrar[$y]="<a href='eliminarplan.php?id=$obj->DNI'><img class='logoadmin'src='../img/eliminarplan.png'</a>";
+			$editar[$y]="<a href='editarplan.php?id=$obj->DNI'><img class='logoadmin'src='../img/editarplan.ico'</a>";
+			$adminplan[$y]="<a href='eliminarejeplan.php?id=$obj->ID_PLAN'><img class='logoadmin'src='../img/ejerciciox.png'</a>";
+			$yaplan[$y]="<p>Ya tiene plan asigando</p>";
+			
 }
 			else{
 			$tipo[$y]="No tiene plan";
 			$idplan[$y]="<p>No se pueden poner ejercicios si no tiene plan</p>";
+			$borrar[$y]="<p>No se puede borrar un plan inexistente</p>";
+			$editar[$y]="<p>No se puede editar un plan inexixtente</p>";
+			$adminplan[$y]="<p>No se puede administrar un plan inexistente</p>";
+			$yaplan[$y]="<a href='asignarplan.php?id=$obj->DNI'><img class='logoadmin'src='../img/asignarplan.png'</a>";
 			}
             $y++;
             
@@ -69,7 +84,7 @@ if ($_SESSION["nivel"]==1) {
             <th>PLAN</th>
             <th>EDITAR PLAN</th>
 			<th>BORRAR PLAN</th>
-			<th>BORRAR EJER PLAN</th>
+			<th>ADMIN EJER PLAN</th>
             <th>CREAR PLAN</th>
 			<th>ASIGNAR EJERCICIOS</th>
             
@@ -80,10 +95,10 @@ if ($_SESSION["nivel"]==1) {
         echo "<tr>";
         echo "<td>".$usuario[$y]."</td>";
 		echo "<td>".$tipo[$y]."</td>";
-		echo "<td><a href='editarplan.php?id=$dni[$y]'><img class='logoadmin'src='../img/editarplan.ico'</a></td>";
-		echo "<td><a href='eliminarplan.php?id=$dni[$y]'><img class='logoadmin'src='../img/eliminarplan.png'</a></td>";
-		echo "<td><a href='eliminarejeplan.php?id=$planid[$y]'><img class='logoadmin'src='../img/ejerciciox.png'</a></td>";
-        echo "<td><a href='asignarplan.php?id=$dni[$y]'><img class='logoadmin'src='../img/asignarplan.png'</a></td>";
+		echo "<td>".$editar[$y]."</td>";
+		echo "<td>".$borrar[$y]."</td>";
+		echo "<td>".$adminplan[$y]."</td>";
+        echo "<td>".$yaplan[$y]."</td>";
 		echo "<td>".$idplan[$y]."</td>";
 		echo "</tr>";
         }

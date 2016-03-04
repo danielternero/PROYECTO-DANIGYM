@@ -1,8 +1,13 @@
 <?php
 include_once("./configuraciondb.php");
- session_start();
-if ($_SESSION['nivel']==1) {
-             header('location: Proyecto1.php');
+session_start();
+
+if (!isset($_SESSION["user"])) {
+          header("location: Proyecto1.php");
+}
+if ($_SESSION["nivel"]==1) {
+            
+            header("location: Proyecto1.php");
           } 
 ?>
 
@@ -67,14 +72,20 @@ header('Location: adminplan.php');
     Fecha fin:
     <input type="date" name="FECHA_FIN" required value="<?php echo $fechafin; ?>"/></br></br>
     Peso inicio:
-    <input type="text" name="PESO_INICIO" required value="<?php echo $pesoini; ?>"/></br></br>
+    <input type="number" name="PESO_INICIO" required value="<?php echo $pesoini; ?>"/></br></br>
     Peso fin:
-    <input type="text" name="PESO_FIN" value="<?php echo $pesofin; ?>"/></br></br>
+    <input type="number" name="PESO_FIN" value="<?php echo $pesofin; ?>"/></br></br>
 	Tipo:
 	<input type="text" name="TIPO" required value="<?php echo $tipo; ?>"/></br></br>
 <input type="submit" value="Cambiar" />
     </fieldset>
 </form>
+<div id='contenidoplan2'>
+	<p></br></br>EN ESTA SESSION EL ADMINISTRADOR PUEDE EDITAR EL PLAN.</br>
+LAS FECHAS DE COMIENZO Y FIN DEL PLAN, 
+EL PESO INICIO , EL PESO FINAL (OBJETIVO)
+Y EL TIPO DE PLAN.</p>
+</div>
 
     </div>
   <div id="pie">

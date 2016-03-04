@@ -1,8 +1,13 @@
 <?php
 include_once("./configuraciondb.php");
- session_start();
-if ($_SESSION['nivel']==1) {
-             header('location: Proyecto1.php');
+session_start();
+
+if (!isset($_SESSION["user"])) {
+          header("location: Proyecto1.php");
+}
+if ($_SESSION["nivel"]==1) {
+            
+            header("location: Proyecto1.php");
           } 
 ?>
 
@@ -75,7 +80,11 @@ header('Location: admininstalacion.php');
 <input type="submit" value="Cambiar" />
     </fieldset>
 </form>
-
+<div id='contenidoplan2'>
+	<p></br></br>EN ESTA SESSION EL ADMINISTRADOR EDITA LAS DIFERENTES INSTALACIONES QUE EXISTEN EN LA BASE DE DATOS.</br>
+	EDITA EL NOMBRE DE LA SALA, LA PLANTA,LA HORA DE APERTURA Y CIERRE, Y PUEDES AÑADIR UNA IMAGEN DE LA INSTALACION MEDIANTE UN ENLACE.
+</p>
+</div>
     </div>
   <div id="pie">
 

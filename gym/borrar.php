@@ -10,13 +10,16 @@
             $idplan=$obj->ID_PLAN;
 
      }
+	//PARA PODER BORRAR LOS USUARIOS TENEMOS QUE BORRAR EL CONFORMA Y EL PLAN SI LOS TUVIERA..
+
     $connection->query("DELETE FROM conforma WHERE conforma.FKID_PLAN='".$idplan."';");
     $connection->query("DELETE FROM plan WHERE plan.FKDNI='".$_GET['id']."';");
     $connection->query("DELETE FROM usuario WHERE usuario.DNI='".$_GET['id']."';");
    
-     
+     unset($obj);
+     unset($connection);
+
         header("Location: adminusuario.php");
          
-          unset($obj);
-          unset($connection);
+          
     ?>

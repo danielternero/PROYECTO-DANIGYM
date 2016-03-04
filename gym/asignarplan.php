@@ -1,6 +1,10 @@
 <?php
 include_once("./configuraciondb.php");
- session_start();
+session_start();
+
+if (!isset($_SESSION["user"])) {
+          header("location: Proyecto1.php");
+}
 if ($_SESSION["nivel"]==1) {
             
             header("location: Proyecto1.php");
@@ -23,18 +27,12 @@ if ($_SESSION["nivel"]==1) {
 <?php
  		
       $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
-	if ($comparacion=$connection->query("select * from plan where FKDNI='".$_GET['id']."';")){
-  if ($comparacion->num_rows!=0){
-  echo "<h1>ya tiene asignado un plan</h1>";
-	  header('Refresh:2; url=administrador.php');
-  }
-}
       $consulta=$connection->query("select * from usuario where usuario.DNI='".$_GET['id']."';");
      while($obj = $consulta->fetch_object()){
 	 
 	 $dni=$obj->DNI;
 }
-
+//PARA QUE EL ID PLAN SE PONGA AUTOMATICAMENTE EL SIGUIENTE
  $consulta2=$connection->query("SELECT ID_PLAN from PLAN ORDER by ID_PLAN DESC LIMIT 1");
      while($obj = $consulta2->fetch_object()){
 	 
@@ -87,9 +85,9 @@ header('Location: adminplan.php');
     FECHA FIN:
     <input type="date" name="FECHA_FIN"/></br></br>
     PESO INICIO:
-    <input type="text" name="PESO_INICIO"/></br></br>
+    <input type="number" name="PESO_INICIO"/>(kg)</br></br>
     PESO FIN:
-    <input type="text" name="PESO_FIN"/></br></br>
+    <input type="number" name="PESO_FIN"/>(kg)</br></br>
     TIPO:
     <input type="text" name="TIPO"/></br></br>
     </fieldset>
@@ -104,11 +102,11 @@ header('Location: adminplan.php');
 	echo "</select></br></br>";
 		?>
     REPETICIONES:
-    <input type="text" name="REPETICIONES"/></br></br>
+    <input type="number" name="REPETICIONES"/></br></br>
     TIEMPO ESTIMADO:
-    <input type="text" name="TIEMPO_ESTIMADO"/></br></br>
+    <input type="time" name="TIEMPO_ESTIMADO" step="1"/></br></br>
     SERIES:
-    <input type="text" name="SERIES"/></br></br>
+    <input type="number" name="SERIES"/></br></br>
     DIA DE LA SEMANA:
     <input type="text" name="DIA_SEMANA"/></br></br>
     <input type="submit" value="enviar" />

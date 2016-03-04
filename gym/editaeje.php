@@ -1,8 +1,13 @@
 <?php
 include_once("./configuraciondb.php");
  session_start();
-if ($_SESSION['nivel']==1) {
-             header('location: Proyecto1.php');
+
+if (!isset($_SESSION["user"])) {
+          header("location: Proyecto1.php");
+}
+if ($_SESSION["nivel"]==1) {
+            
+            header("location: Proyecto1.php");
           } 
 ?>
 
@@ -72,6 +77,12 @@ header('Location: adminejercicio.php');
 <input type="submit" value="Cambiar" />
     </fieldset>
 </form>
+<div id='contenidoplan2'>
+	<p></br></br>EN ESTA SESSION EL ADMINISTRADOR EDITA LOS EJERCICIOS QUE EXISTEN EN LA BASE DE DATOS.</br>
+	EDITA EL NOMBRE DEL EJERCICIO, LA CLASIFICACION ("Peso libre, maquinas, actividades dirigidas...), SI 
+	REQUIERE MAQUINA Y PUEDES CAMBIAR EL VIDEO MEDIANTE UN ENLACE DE VIDEO.
+</p>
+</div>
 
     </div>
   <div id="pie">

@@ -5,9 +5,8 @@
     
     $connection->query("DELETE FROM instalaciones WHERE instalaciones.SALA='".$_GET['id']."';");
    
-     
+     	unset($connection);
         header("Location: admininstalacion.php");
          
-          unset($obj);
-          unset($connection);
+         
     ?>

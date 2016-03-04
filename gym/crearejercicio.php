@@ -1,5 +1,14 @@
 <?php
 include_once("./configuraciondb.php");
+ session_start();
+if (!isset($_SESSION["user"])) {
+          header("location: Proyecto1.php");
+}
+if ($_SESSION["nivel"]==1) {
+            
+            header("location: Proyecto1.php");
+          } 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,7 +94,12 @@ include_once("./configuraciondb.php");
     </fieldset>
     
 </form>
-
+<div id='contenidoplan2'>
+	<p></br>EN ESTA SESSION EL ADMINISTRADOR CREA NUEVOS EJERCICIOS QUE SE AÑADEN A LA BASE DE DATOS.</br>
+	AÑADE EL NOMBRE DEL EJERICICO,  LA CLASIFICACION ("Peso libre, maquinas, actividades dirigidas...), SI 
+	REQUIERE MAQUINA , LA INSTALACION DONDE SE EJECUTA EL EJERCICIO Y PUEDES AÑADIR UN VIDEO MEDIANTE UN ENLACE DE VIDEO.
+</p>
+</div>
     </div>
   <div id="pie">
 

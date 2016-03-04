@@ -5,9 +5,9 @@
     
     $connection->query("DELETE FROM ejercicios WHERE ejercicios.NOMBRE_EJER='".$_GET['id']."';");
    
-     
+     unset($obj);
+     unset($connection);
         header("Location: adminejercicio.php");
          
-          unset($obj);
-          unset($connection);
+          
     ?>

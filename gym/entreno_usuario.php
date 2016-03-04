@@ -4,8 +4,9 @@ include_once("./configuraciondb.php");
 if (!isset($_SESSION["user"])) {
           header("location: Proyecto1.php");
           }
+// SACA TODO LOS DATOS DEL PLAN DE UNA PERSONA
  $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
-        if ($result = $connection->query("SELECT * FROM plan join usuario on plan.FKDNI=usuario.DNI join conforma on plan.ID_PLAN=conforma.FKID_PLAN join ejercicios on conforma.FKID_EJERCICIO=ejercicios.ID_EJERCICIO join instalaciones on ejercicios.FKID_INSTALACION=instalaciones.ID_INSTALACION WHERE nombre='".$_SESSION['user']."';")) {
+if ($result = $connection->query("SELECT * FROM plan join usuario on plan.FKDNI=usuario.DNI join conforma on plan.ID_PLAN=conforma.FKID_PLAN join ejercicios on conforma.FKID_EJERCICIO=ejercicios.ID_EJERCICIO join instalaciones on ejercicios.FKID_INSTALACION=instalaciones.ID_INSTALACION WHERE nombre='".$_SESSION['user']."';")) {
               if ($result->num_rows===0) {
                 echo "NO TIENE PLAN ASIGNADO";
               } else {

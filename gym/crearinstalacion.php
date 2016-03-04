@@ -1,5 +1,15 @@
 <?php
 include_once("./configuraciondb.php");
+session_start();
+
+if (!isset($_SESSION["user"])) {
+          header("location: Proyecto1.php");
+}
+if ($_SESSION["nivel"]==1) {
+            
+            header("location: Proyecto1.php");
+          } 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,7 +80,12 @@ include_once("./configuraciondb.php");
     </fieldset>
     
 </form>
-
+<div id='contenidoplan2'>
+	<p></br></br>EN ESTA SESSION EL ADMINISTRADOR AÑADE INSTALACIONES A LA BASE DE DATOS.</br>
+	AÑADE EL NOMBRE DE LA SALA, LA PLANTA DONDE ESTA SITUADA LA SALA, LA HORA DE APERTURA Y CIERRE DE DICHA SALA 
+	Y PUEDES INTRODUCIR UNA IMAGEN DE LA SALA MEDIANTE UN ENLACE.
+</p>
+</div>
     </div>
   <div id="pie">
 

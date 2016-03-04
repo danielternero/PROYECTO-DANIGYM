@@ -1,5 +1,14 @@
 <?php
    include_once("./configuraciondb.php");
+session_start();
+
+if (!isset($_SESSION["user"])) {
+          header("location: Proyecto1.php");
+}
+if ($_SESSION["nivel"]==1) {
+            
+            header("location: Proyecto1.php");
+          } 
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,6 +40,7 @@
 			$ejercicio=array('idplan'=>$obj->FKID_PLAN,'idejer'=>$obj->FKID_EJERCICIO);
 			$url=http_build_query($ejercicio);
 			$enlace[$y]="borrarejeplan.php?".$url;
+			$enlace2[$y]="editarejeplan.php?".$url;
 			$y++;
 				}		
 			}
@@ -64,7 +74,8 @@
 		for($y=0;$y<sizeof($idplan);$y++){
         
 		echo "<tr>";
-		echo "<td><a href='editarejeplan.php?id=$idejer[$y]'><img class='logoadmin'src='../img/editar.png'</a></td>";
+		
+		echo "<td><a href='".$enlace2[$y]."'><img class='logoadmin'src='../img/editar.png'</a></td>";
 		echo "<td><a href='".$enlace[$y]."'><img class='logoadmin'src='../img/cerrar-icono.png'</a></td>";
         if($consulta=$connection->query("select * from ejercicios where ID_EJERCICIO='".$idejer[$y]."';")){
      

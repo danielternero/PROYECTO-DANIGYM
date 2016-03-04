@@ -1,9 +1,14 @@
 <?php
 include_once("./configuraciondb.php");
+//LA BORRO LA ANTERIOR PARA PODER UTILIZARLA LUEGO LIMPIA.
 if (isset($_SESSION['id'])){
 unset($_SESSION['id']);						  
 }
  session_start();
+
+if (!isset($_SESSION["user"])) {
+          header("location: Proyecto1.php");
+}
 if ($_SESSION["nivel"]==1) {
             
             header("location: Proyecto1.php");
@@ -73,11 +78,11 @@ header('Location: adminplan.php');
 	echo "</select></br></br>";
 		?>
     REPETICIONES:
-    <input type="text" name="REPETICIONES"/></br></br>
+    <input type="number" name="REPETICIONES"/></br></br>
     TIEMPO ESTIMADO:
-    <input type="text" name="TIEMPO_ESTIMADO"/></br></br>
+    <input type="time" name="TIEMPO_ESTIMADO" step="1"/></br></br>
     SERIES:
-    <input type="text" name="SERIES"/></br></br>
+    <input type="number" name="SERIES"/></br></br>
     DIA DE LA SEMANA:
     <input type="text" name="DIA_SEMANA"/></br></br>
     <input type="submit" value="enviar" />
@@ -85,6 +90,11 @@ header('Location: adminplan.php');
     </fieldset>
     
 </form>
+<div id='contenidoplan2'>
+	<p></br></br>EN ESTA SESSION EL ADMINISTRADOR AÑADE EJERCICIOS AL PLAN QUE YA TIENE ASIGNADO.</br>
+	PUEDE INCLUIR EJERCICIOS, LAS REPETICIONES, EL TIEMPO ESTIMADO, LAS SERIES Y EL DIA DE LA SEMANA
+</p>
+</div>
 
 
     </div>

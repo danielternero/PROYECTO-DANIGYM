@@ -1,8 +1,13 @@
 <?php
 include_once("./configuraciondb.php");
  session_start();
-if ($_SESSION['nivel']==1) {
-             header('location: Proyecto1.php');
+
+if (!isset($_SESSION["user"])) {
+          header("location: Proyecto1.php");
+}
+if ($_SESSION["nivel"]==1) {
+            
+            header("location: Proyecto1.php");
           } 
 ?>
 

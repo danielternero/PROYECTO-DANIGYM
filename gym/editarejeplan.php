@@ -1,8 +1,13 @@
 <?php
 include_once("./configuraciondb.php");
- session_start();
-if ($_SESSION['nivel']==1) {
-             header('location: Proyecto1.php');
+session_start();
+
+if (!isset($_SESSION["user"])) {
+          header("location: Proyecto1.php");
+}
+if ($_SESSION["nivel"]==1) {
+            
+            header("location: Proyecto1.php");
           } 
 ?>
 
@@ -21,28 +26,40 @@ if ($_SESSION['nivel']==1) {
 <body>
 
 <?php
- 	  $_SESSION['idejer']=$_GET['id'];
-      $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
-      $consulta=$connection->query("select * from conforma, ejercicios  WHERE conforma.FKID_EJERCICIO=ejercicios.ID_EJERCICIO and FKID_PLAN=".$_GET['idplan']." and FKID_EJERCICIO=".$_GET['idejer']."';");
-     
-    while($obj = $consulta->fetch_object()){
+	 $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
+ 	 if (isset($_GET['idejer'])){
+	 $_SESSION['idejer']=$_GET['idejer'];
+	 $_SESSION['idplan']=$_GET['idplan'];
+								 
+      
+      $consulta=$connection->query("select * from conforma where conforma.FKID_EJERCICIO=".$_SESSION['idejer']." and conforma.FKID_PLAN=".$_SESSION['idplan'].";");
+
+
+   		while($obj = $consulta->fetch_object()){
             
             
-            
-            $nombre=$obj->NOMBRE_EJER;
-            $clasificacion=$obj->CLASIFICACION;
-            $maquina=$obj->REQUIERE_MAQUINA;
-            $enlace=$obj->ENLACE;
+            $repeticiones=$obj->REPETICIONES;
+            $tiempo=$obj->TIEMPO_ESTIMADO;
+            $series=$obj->SERIES;
+            $diasemana=$obj->DIA_SEMANA;
 			
 			
      }
-if (isset($_POST['NOMBRE_EJER'])){
-$connection->query("UPDATE ejercicios SET  NOMBRE_EJER = '".$_POST['NOMBRE_EJER']."', CLASIFICACION = '".$_POST['CLASIFICACION']."', REQUIERE_MAQUINA ='".$_POST['REQUIERE_MAQUINA']."', ENLACE = '".$_POST['ENLACE']."' where ejercicios.ID_EJERCICIO='".$_SESSION['idejer']."';");
+
+	 }
+if (isset($_POST['REPETICIONES'])){
+
+$consulta="UPDATE conforma SET  REPETICIONES = '".$_POST['REPETICIONES']."', TIEMPO_ESTIMADO = '".$_POST['TIEMPO_ESTIMADO']."', SERIES ='".$_POST['SERIES']."', DIA_SEMANA = '".$_POST['DIA_SEMANA']."' where FKID_EJERCICIO=".$_SESSION['idejer']." and FKID_PLAN=".$_SESSION['idplan'].";";
+	
+$connection->query($consulta);
 unset( $_SESSION['idejer']);
+unset( $_SESSION['idplan']);
+
 
 header('Location: adminplan.php');
-}
 
+
+}
     ?>
 
 <div id="contenedor">
@@ -52,26 +69,32 @@ header('Location: adminplan.php');
          <h1 class="welcome">EDITAR EJERCICIOS</h1>
     </div>
 	  	<div class="cuadro2">
-		   	<a href="adminejercicio.php"><img  class="botonsalir" src="salir.png"/></a>
+		   	<a href="eliminarejeplan.php?<?php echo "id=".$_GET['idplan']; ?>"><img  class="botonsalir" src="salir.png"/></a>
 	  	</div>
   </div>
   <div id="cuerpo">
-<form method="post" enctype="multipart/form-data">
+<form method="post" action="editarejeplan.php">
     <fieldset class="formulario">
         <legend><span class="subrayado">EJERCICIO </span></legend></br>
     
    
-    Nombre:
-    <input type="text" name="NOMBRE_EJER" required value="<?php echo $nombre; ?>"/></br></br>
-    Clasificacion:
-    <input type="text" name="CLASIFICACION" required value="<?php echo $clasificacion; ?>"/></br></br>
-    Requiere Maquina:
-    <input type="text" name="REQUIERE_MAQUINA" required value="<?php echo $maquina; ?>"/></br></br>
-    Video:
-    <input  name="ENLACE"  value="<?php echo $enlace; ?>"/></br></br>
+    Repeticiones:
+    <input type="number" name="REPETICIONES" required value="<?php echo $repeticiones; ?>"/></br></br>
+    Tiempo estimado:
+    <input type="time" name="TIEMPO_ESTIMADO" step="1"required value="<?php echo $tiempo; ?>"/></br></br>
+    Series:
+    <input type="number" name="SERIES" required value="<?php echo $series; ?>"/></br></br>
+    Dia de la Semana:
+    <input  type="text" name="DIA_SEMANA"  required value="<?php echo $diasemana; ?>"/></br></br>
 <input type="submit" value="Cambiar" />
     </fieldset>
 </form>
+<div id='contenidoplan2'>
+	<p></br></br>EN ESTA SESSION EL ADMINISTRADOR PUEDE EDITAR LOS EJERCICIOS QUE TIENE ASIGNADOS DICHO PLAN.</br></br>
+EDITA EL NUMERO DE REPETICIONES,TIEMPO ESTIMADO POR EJERCICIO, 
+NUMERO DE SERIES Y EL DIA DE LA SEMANA
+</p>
+</div>
 
     </div>
   <div id="pie">

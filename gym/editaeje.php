@@ -42,7 +42,7 @@ if ($_SESSION["nivel"]==1) {
 			
      }
 if (isset($_POST['NOMBRE_EJER'])){
-$connection->query("UPDATE ejercicios SET  NOMBRE_EJER = '".$_POST['NOMBRE_EJER']."', CLASIFICACION = '".$_POST['CLASIFICACION']."', REQUIERE_MAQUINA ='".$_POST['REQUIERE_MAQUINA']."', ENLACE = '".$_POST['ENLACE']."' where ejercicios.ID_EJERCICIO='".$_SESSION['idejer']."';");
+$connection->query("UPDATE ejercicios SET  NOMBRE_EJER = '".$_POST['NOMBRE_EJER']."', CLASIFICACION = '".$_POST['CLASIFICACION']."', REQUIERE_MAQUINA ='".$_POST['REQUIERE_MAQUINA']."',FKID_INSTALACION = '".$_POST['FKID_INSTALACION']."', ENLACE = '".$_POST['ENLACE']."' where ejercicios.ID_EJERCICIO='".$_SESSION['idejer']."';");
 unset( $_SESSION['idejer']);
 
 header('Location: adminejercicio.php');
@@ -72,6 +72,15 @@ header('Location: adminejercicio.php');
     <input type="text" name="CLASIFICACION" required value="<?php echo $clasificacion; ?>"/></br></br>
     Requiere Maquina:
     <input type="text" name="REQUIERE_MAQUINA" required value="<?php echo $maquina; ?>"/></br></br>
+	Instalacion<?php
+	echo "<select name='FKID_INSTALACION'>";
+	
+	$consulta2=$connection->query("select * from instalaciones;");
+	while($obj2 = $consulta2->fetch_object()){
+	echo "<option value='".$obj2->ID_INSTALACION."'>".$obj2->SALA."</option>"; 
+	}
+	echo "</select></br></br>";
+	?>
     Video:
     <input  name="ENLACE"  value="<?php echo $enlace; ?>"/></br></br>
 <input type="submit" value="Cambiar" />

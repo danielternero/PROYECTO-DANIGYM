@@ -4,16 +4,12 @@
 if(isset($_POST["user"])){
     
           $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
-          if ($connection->connect_errno){
-              printf("Connection failed: %s\n", $connection->connect_error);
-              exit();
-          }
-          
+ /*---------------------------------1º consulta para el login-----------------------------------------------*/         
           $query = $connection->prepare("SELECT nivel_de_usuario, nombre FROM usuario WHERE usuario=? AND contrasena=md5(?)");
           $query->bind_param("ss",$_POST["user"],$_POST["password"]);
           if ($query->execute()) {
               
-              
+              //guarda los resultados
               $query->store_result();              
             
               if ($query->num_rows===0) {
@@ -38,7 +34,7 @@ if(isset($_POST["user"])){
              
 }
             
-/*-------------------------2º consulta ------------------------------------------------------*/
+/*-------------------------2º consulta para sacar datos instalaciones------------------------------------------------------*/
 $connection2 = new mysqli($db_host, $db_user, $db_password, $db_name);
         if ($result2 = $connection2->query("SELECT * FROM instalaciones;")) {
               if ($result2->num_rows===0) {
@@ -56,7 +52,7 @@ $connection2 = new mysqli($db_host, $db_user, $db_password, $db_name);
             echo "Wrong Query";
             var_dump($result2);
           }
-/*-----------------3ºconsulta--------------------------------------------------------------*/
+/*----------------------3ºconsulta para sacar las imagenes del carrusel----------------------------------------------------------*/
 $connection3 = new mysqli($db_host, $db_user, $db_password, $db_name);
         if ($result3 = $connection3->query("SELECT direccion_imagen FROM instalaciones;")) {
               if ($result3->num_rows===0) {

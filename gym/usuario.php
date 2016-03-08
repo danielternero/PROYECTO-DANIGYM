@@ -7,6 +7,7 @@ if (!isset($_SESSION["user"])) {
             $connection = new mysqli($db_host, $db_user, $db_password, $db_name);
         if ($result = $connection->query("SELECT * FROM plan join usuario on plan.FKDNI=usuario.DNI  WHERE                  nombre='".$_SESSION['user']."';")) {
               if ($result->num_rows===0) {
+/*--------------------EN CASO DE QUE NO TENGA PLAN ASIGANDO, SACO LOS DATOS DEL USUARIO-----------------------*/
                 if ($result2 = $connection->query("SELECT * FROM usuario WHERE nombre='".$_SESSION['user']."';")) {
                     if ($result2->num_rows===0){
                     echo "usuario inexistente";
@@ -24,9 +25,8 @@ if (!isset($_SESSION["user"])) {
                  }
                     }
                 }
-                
+/*----------------------- SI TIENE PLAN---------------------------------------------------*/              
                 } else {
-                //THE LOOP CONTINUES WHILE WE HAVE ANY OBJECT (Query Row) LEFT
                  while($obj = $result->fetch_object()) {
                      $datos['nombre']=$obj->NOMBRE;
                      $datos['apellidos']=$obj->APELLIDO;
@@ -90,6 +90,7 @@ echo strtoupper($_SESSION['user']);
             <p>CORREO ELECTRONICO : <?php echo $datos['correo'];?></p>
     </div>
       <?php 
+/*-------------SI TIENE PLAN MUESTRA LA PRIERA CONSULTA, SINO MUESTRA QUE NO TIENE PLAN.....*/
     if (!isset($result2)){   
         echo "<div  id='contenidoplan'>";
            echo "<p><span class='subrayado'>ENTRENAMIENTO:</span></p>";

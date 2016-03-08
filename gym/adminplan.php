@@ -24,9 +24,9 @@ if ($_SESSION["nivel"]==1) {
             $usuario[$y]=$obj->NOMBRE;
             $dni[$y]=$obj->DNI;
 				
-			//No es nulo quere decir que tiene plan.
 				
-			if($obj->TIPO!=null){
+				
+			if($obj->TIPO!=null){ //Quiere decir que tiene plan.(NO DEVUELVE NULL)
 			$tipo[$y]=$obj->TIPO;
 			$idplan[$y]="<a href='incluirejer.php?id=$obj->ID_PLAN'><img class='logoadmin' src='../img/ejercicio.png'></a>";
 			$planid[$y]=$obj->ID_PLAN;
@@ -35,8 +35,8 @@ if ($_SESSION["nivel"]==1) {
 			$adminplan[$y]="<a href='eliminarejeplan.php?id=$obj->ID_PLAN'><img class='logoadmin'src='../img/ejerciciox.png'</a>";
 			$yaplan[$y]="<p>Ya tiene plan asigando</p>";
 			
-}
-			else{
+}				
+			else{ //No tiene plan. (DEVUELVE NULL)
 			$tipo[$y]="No tiene plan";
 			$idplan[$y]="<p>No se pueden poner ejercicios si no tiene plan</p>";
 			$borrar[$y]="<p>No se puede borrar un plan inexistente</p>";

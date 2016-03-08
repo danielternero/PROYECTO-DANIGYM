@@ -79,19 +79,19 @@ header('Location: adminplan.php');
     <fieldset class="formulario">
     <legend ><span class="subrayado">ASIGNAR PLAN</span></legend></br>
     FECHA INICIO:
-    <input type="date" name="FECHA_INICIO"/></br></br>
+    <input type="date" name="FECHA_INICIO" required/></br></br>
     FECHA FIN:
-    <input type="date" name="FECHA_FIN"/></br></br>
+    <input type="date" name="FECHA_FIN" required/></br></br>
     PESO INICIO:
-    <input type="number" name="PESO_INICIO"/>(kg)</br></br>
+    <input type="number" name="PESO_INICIO" required/>(kg)</br></br>
     PESO FIN:
-    <input type="number" name="PESO_FIN"/>(kg)</br></br>
+    <input type="number" name="PESO_FIN" required/>(kg)</br></br>
     TIPO:
-    <input type="text" name="TIPO"/></br></br>
+    <input type="text" name="TIPO" required/></br></br>
     </fieldset>
-    <fieldset class="formulario"></br>
+    <fieldset class="formulario" required></br>
     EJERCICIO:<?php
-    echo "<select name='EJERCICIO'>";
+    echo "<select name='EJERCICIO' required>";
 	
 	$consulta2=$connection->query("select * from ejercicios;");
 	  while($obj2 = $consulta2->fetch_object()){
@@ -100,13 +100,13 @@ header('Location: adminplan.php');
 	echo "</select></br></br>";
 		?>
     REPETICIONES:
-    <input type="number" name="REPETICIONES"/></br></br>
+    <input type="number" name="REPETICIONES" required/></br></br>
     TIEMPO ESTIMADO:
-    <input type="time" name="TIEMPO_ESTIMADO" step="1"/></br></br>
+    <input type="time" name="TIEMPO_ESTIMADO" step="1" required/></br></br>
     SERIES:
-    <input type="number" name="SERIES"/></br></br>
+    <input type="number" name="SERIES" required/></br></br>
     DIA DE LA SEMANA:
-    <input type="text" name="DIA_SEMANA"/></br></br>
+    <input type="text" name="DIA_SEMANA" required/></br></br>
     <input type="submit" value="enviar" />
     </fieldset>
     

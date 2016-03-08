@@ -38,6 +38,7 @@ if ($_SESSION["nivel"]==1) {
             $clasificacion=$obj->CLASIFICACION;
             $maquina=$obj->REQUIERE_MAQUINA;
             $enlace=$obj->ENLACE;
+			$idantigua=$obj->FKID_INSTALACION;
 			
 			
      }
@@ -77,7 +78,12 @@ header('Location: adminejercicio.php');
 	
 	$consulta2=$connection->query("select * from instalaciones;");
 	while($obj2 = $consulta2->fetch_object()){
+	if($obj2->ID_INSTALACION==$idantigua){	
+	echo "<option value='".$obj2->ID_INSTALACION."' selected>".$obj2->SALA."</option>";
+	}
+	else{
 	echo "<option value='".$obj2->ID_INSTALACION."'>".$obj2->SALA."</option>"; 
+	}
 	}
 	echo "</select></br></br>";
 	?>
